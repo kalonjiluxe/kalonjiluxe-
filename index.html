@@ -5,142 +5,198 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KALONJI LUXE</title>
   <style>
+    /* --- BASE STYLING --- */
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f0f0f;
-      color: white;
-      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0a0a0a;
+      color: #f5f5f5;
+      scroll-behavior: smooth;
+      line-height: 1.6;
     }
 
-    /* Step 2 — Luxury Colors */
-    h1, h2 {
-      color: #f5c16c; /* Champagne gold for headings */
+    a {
+      text-decoration: none;
+      color: inherit;
     }
+
+    h1, h2, h3 {
+      margin: 10px 0;
+      font-weight: 600;
+    }
+
+    /* --- LUXURY COLORS --- */
+    h1, h2 {
+      color: #f5c16c; /* Champagne gold */
+    }
+
+    .accent-gold { color: #f5c16c; }
+    .accent-silver { color: #c0c0c0; }
+    .accent-burgundy { color: #800020; }
+    .accent-navy { color: #001f3f; }
 
     .btn {
-      background-color: #f5c16c; /* Gold button */
+      background-color: #f5c16c;
       color: #111;
-      text-decoration: none;
+      padding: 12px 24px;
       border-radius: 30px;
       font-weight: bold;
-      padding: 12px 20px;
       display: inline-block;
-      transition: background-color 0.3s;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      margin-top: 15px;
     }
 
     .btn:hover {
       background-color: #e0b84a;
+      transform: scale(1.05);
     }
 
     header {
-      padding: 40px 20px;
+      background: linear-gradient(135deg, #001f3f, #800020);
+      padding: 50px 20px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     }
 
-    /* Product Styling */
+    header img {
+      width: 180px;
+      max-width: 80%;
+    }
+
+    /* --- SECTIONS --- */
+    section {
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
     .product {
-      margin: 40px auto;
-      max-width: 300px;
       background: #1a1a1a;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.05);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      margin-bottom: 50px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(245,193,108,0.4);
     }
 
     .product img {
       width: 100%;
-      border-radius: 10px;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .product img:hover {
+      transform: scale(1.02);
     }
 
     .price {
-      font-size: 1.4em;
-      margin: 15px 0;
+      font-size: 1.5em;
       color: #f5c16c;
+      margin: 15px 0;
     }
 
     ul {
       list-style-type: none;
-      color: #d4d4d4;
       padding: 0;
-      margin: 10px 0;
+      color: #d4d4d4;
     }
 
-    /* About Section — Step 3 */
+    /* --- ABOUT SECTION --- */
     .about {
-      margin: 50px auto;
-      max-width: 600px;
-      color: silver;
-      text-align: center;
-    }
-
-    .about h2 {
-      color: #f5c16c;
-      font-size: 2em;
-      margin-bottom: 15px;
+      background: #0d0d0d;
+      border-left: 5px solid #f5c16c;
+      padding-left: 25px;
+      margin-bottom: 50px;
     }
 
     .about p {
-      font-size: 1em;
       color: #d4d4d4;
+      font-size: 1.1em;
     }
 
-    /* Reviews Section — Step 5 */
+    /* --- REVIEWS --- */
     .reviews {
-      margin-top: 50px;
-      padding: 20px;
-      background-color: #1c1c1c;
-      color: silver;
-      text-align: center;
-    }
-
-    .reviews h2 {
-      font-size: 2em;
-      margin-bottom: 20px;
-      color: #f5c16c;
+      background: #111;
+      border-radius: 15px;
+      padding: 40px 20px;
+      margin-bottom: 50px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     }
 
     .review {
-      margin-bottom: 20px;
-      border-bottom: 1px solid silver;
+      margin-bottom: 25px;
       padding-bottom: 10px;
+      border-bottom: 1px solid #555;
     }
 
     .review h3 {
-      margin: 0;
-      color: #f5f5f5;
+      color: #f5c16c;
     }
 
     .review p {
-      margin: 5px 0 0 0;
+      color: #c0c0c0;
       font-style: italic;
-      color: #d4d4d4;
     }
 
-    footer {
-      margin-top: 60px;
-      padding: 20px;
-      font-size: 0.9em;
-      color: #777;
+    /* --- REVIEW FORM --- */
+    .review-form input, .review-form textarea, .review-form select {
+      background: #1a1a1a;
+      color: #d4d4d4;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      width: 80%;
+      margin: 5px 0;
     }
+
+    .review-form select { width: 50%; }
+
+    /* --- FOOTER --- */
+    footer {
+      background: #111;
+      padding: 25px 10px;
+      text-align: center;
+      color: #777;
+      font-size: 0.9em;
+    }
+
+    footer a { color: #f5c16c; }
+
+    /* --- SCROLL EFFECTS (hand-coded feel) --- */
+    section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
   </style>
 </head>
 <body>
 
-  <!-- Logo Header -->
+  <!-- HEADER / LOGO -->
   <header>
-    <img src="logo.png" alt="KALONJI LUXE Logo" style="width:200px; max-width:80%;">
+    <img src="logo.png" alt="KALONJI LUXE Logo">
   </header>
 
-  <!-- Product 1 -->
-  <div class="product">
+  <!-- PRODUCT SECTION -->
+  <section class="product">
     <img src="watch.png" alt="Luxury Watch">
     <h2>Luxury Watch</h2>
     <p class="price">R 825 <span style="font-size:14px; color:#aaa;">(Limited Offer)</span></p>
-    <!-- Step 1 — Trust & Delivery Info -->
     <p style="font-size:14px; color:#d4d4d4;">
       ✔ Free delivery in SA • ✔ Cash on delivery available • ✔ 7-day return policy
     </p>
-    <!-- Step 4 — Product Details -->
     <ul>
       <li>• Stainless steel body</li>
       <li>• Scratch-resistant glass</li>
@@ -148,88 +204,91 @@
       <li>• 1-year warranty</li>
     </ul>
     <a class="btn" href="https://wa.me/27YOURNUMBER">Order on WhatsApp</a>
-  </div>
-
-  <!-- Step 3 — About Us -->
-  <section class="about">
-    <h2>About KALONJI LUXE</h2>
-    <p>We create affordable luxury watches that combine style, quality, and elegance. Every piece is crafted for those who demand sophistication without compromise.</p>
   </section>
 
-  <!-- Step 5 — Reviews -->
+  <!-- ABOUT US -->
+  <section class="about">
+    <h2>About KALONJI LUXE</h2>
+    <p>We craft affordable luxury watches combining style, quality, and elegance. Each piece is designed for those who value sophistication. Handcrafted with care and precision, this is a brand made by a real human with attention to every detail.</p>
+  </section>
+
+  <!-- REVIEWS -->
   <section class="reviews">
     <h2>Customer Reviews</h2>
-
     <div class="review">
       <h3>Jane D. ★★★★☆</h3>
       <p>"Absolutely love my watch! Excellent quality and fast delivery."</p>
     </div>
-
     <div class="review">
       <h3>Mark T. ★★★★☆</h3>
       <p>"Great product for the price. Very stylish and comfortable."</p>
     </div>
-
     <div class="review">
       <h3>Sarah L. ★★★★★</h3>
       <p>"I bought this as a gift and they were thrilled! Highly recommend."</p>
     </div>
   </section>
-<!-- Interactive Review Form -->
-<section class="review-form">
-  <h2>Submit Your Review</h2>
-  <form id="reviewForm">
-    <input type="text" id="reviewerName" placeholder="Your Name" required style="padding:8px; width:80%; margin:5px 0; border-radius:5px; border:none;">
-    <br>
-    <select id="reviewStars" required style="padding:8px; width:50%; margin:5px 0; border-radius:5px; border:none;">
-      <option value="">Select Stars</option>
-      <option value="★☆☆☆☆">1 Star</option>
-      <option value="★★☆☆☆">2 Stars</option>
-      <option value="★★★☆☆">3 Stars</option>
-      <option value="★★★★☆">4 Stars</option>
-      <option value="★★★★★">5 Stars</option>
-    </select>
-    <br>
-    <textarea id="reviewText" placeholder="Write your review..." required style="padding:8px; width:80%; height:60px; margin:5px 0; border-radius:5px; border:none;"></textarea>
-    <br>
-    <button type="submit" class="btn">Submit Review</button>
-  </form>
 
-  <div id="reviewsContainer" style="margin-top:30px;"></div>
-</section>
+  <!-- INTERACTIVE REVIEW FORM -->
+  <section class="review-form">
+    <h2>Submit Your Review</h2>
+    <form id="reviewForm">
+      <input type="text" id="reviewerName" placeholder="Your Name" required>
+      <br>
+      <select id="reviewStars" required>
+        <option value="">Select Stars</option>
+        <option value="★☆☆☆☆">1 Star</option>
+        <option value="★★☆☆☆">2 Stars</option>
+        <option value="★★★☆☆">3 Stars</option>
+        <option value="★★★★☆">4 Stars</option>
+        <option value="★★★★★">5 Stars</option>
+      </select>
+      <br>
+      <textarea id="reviewText" placeholder="Write your review..." required></textarea>
+      <br>
+      <button type="submit" class="btn">Submit Review</button>
+    </form>
+    <div id="reviewsContainer" style="margin-top:30px;"></div>
+  </section>
 
-<script>
-  const form = document.getElementById('reviewForm');
-  const reviewsContainer = document.getElementById('reviewsContainer');
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const name = document.getElementById('reviewerName').value;
-    const stars = document.getElementById('reviewStars').value;
-    const text = document.getElementById('reviewText').value;
-
-    // Create review div
-    const reviewDiv = document.createElement('div');
-    reviewDiv.classList.add('review');
-    reviewDiv.innerHTML = `
-      <h3>${name} ${stars}</h3>
-      <p>"${text}"</p>
-    `;
-
-    // Add new review at the top
-    reviewsContainer.prepend(reviewDiv);
-
-    // Reset form
-    form.reset();
-  });
-      </script>
+  <!-- FOOTER -->
   <footer>
     © 2026 Kalonji Luxe. All rights reserved.
-    <p>
-      Follow us: <a href="https://instagram.com/kalonjiluxe" style="color:#f5c16c;">Instagram</a>
-    </p>
+    <p>Follow us: <a href="https://instagram.com/kalonjiluxe">Instagram</a></p>
   </footer>
+
+  <script>
+    // INTERACTIVE REVIEW SUBMISSION
+    const form = document.getElementById('reviewForm');
+    const reviewsContainer = document.getElementById('reviewsContainer');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('reviewerName').value;
+      const stars = document.getElementById('reviewStars').value;
+      const text = document.getElementById('reviewText').value;
+
+      const reviewDiv = document.createElement('div');
+      reviewDiv.classList.add('review');
+      reviewDiv.innerHTML = `<h3>${name} ${stars}</h3><p>"${text}"</p>`;
+
+      reviewsContainer.prepend(reviewDiv);
+      form.reset();
+    });
+
+    // SCROLL REVEAL EFFECT
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
 
 </body>
 </html>
