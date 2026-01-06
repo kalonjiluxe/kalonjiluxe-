@@ -175,7 +175,55 @@
       <p>"I bought this as a gift and they were thrilled! Highly recommend."</p>
     </div>
   </section>
+<!-- Interactive Review Form -->
+<section class="review-form">
+  <h2>Submit Your Review</h2>
+  <form id="reviewForm">
+    <input type="text" id="reviewerName" placeholder="Your Name" required style="padding:8px; width:80%; margin:5px 0; border-radius:5px; border:none;">
+    <br>
+    <select id="reviewStars" required style="padding:8px; width:50%; margin:5px 0; border-radius:5px; border:none;">
+      <option value="">Select Stars</option>
+      <option value="★☆☆☆☆">1 Star</option>
+      <option value="★★☆☆☆">2 Stars</option>
+      <option value="★★★☆☆">3 Stars</option>
+      <option value="★★★★☆">4 Stars</option>
+      <option value="★★★★★">5 Stars</option>
+    </select>
+    <br>
+    <textarea id="reviewText" placeholder="Write your review..." required style="padding:8px; width:80%; height:60px; margin:5px 0; border-radius:5px; border:none;"></textarea>
+    <br>
+    <button type="submit" class="btn">Submit Review</button>
+  </form>
 
+  <div id="reviewsContainer" style="margin-top:30px;"></div>
+</section>
+
+<script>
+  const form = document.getElementById('reviewForm');
+  const reviewsContainer = document.getElementById('reviewsContainer');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('reviewerName').value;
+    const stars = document.getElementById('reviewStars').value;
+    const text = document.getElementById('reviewText').value;
+
+    // Create review div
+    const reviewDiv = document.createElement('div');
+    reviewDiv.classList.add('review');
+    reviewDiv.innerHTML = `
+      <h3>${name} ${stars}</h3>
+      <p>"${text}"</p>
+    `;
+
+    // Add new review at the top
+    reviewsContainer.prepend(reviewDiv);
+
+    // Reset form
+    form.reset();
+  });
+      </script>
   <footer>
     © 2026 Kalonji Luxe. All rights reserved.
     <p>
