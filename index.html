@@ -1,25 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-  <header>
-  <img src="logo.png" alt="KALONJI LUXE Logo" style="width:200px; max-width:80%;">
-  </header>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KALONJI LUXE</title>
   <style>
-    h1, h2 {
-  color: #f5c16c; /* Champagne gold for headings */
-}
-
-.btn {
-  background-color: #f5c16c; /* Gold button */
-  color: #111;
-  transition: background-color 0.3s;
-}
-
-.btn:hover {
-  background-color: #e0b84a; /* Slightly darker gold on hover */
-  }
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -27,16 +12,32 @@
       color: white;
       text-align: center;
     }
+
+    /* Step 2 — Luxury Colors */
+    h1, h2 {
+      color: #f5c16c; /* Champagne gold for headings */
+    }
+
+    .btn {
+      background-color: #f5c16c; /* Gold button */
+      color: #111;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      padding: 12px 20px;
+      display: inline-block;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #e0b84a;
+    }
+
     header {
       padding: 40px 20px;
     }
-    h1 {
-      font-size: 2.5em;
-      letter-spacing: 2px;
-    }
-    p {
-      color: #cccccc;
-    }
+
+    /* Product Styling */
     .product {
       margin: 40px auto;
       max-width: 300px;
@@ -45,127 +46,141 @@
       border-radius: 12px;
       box-shadow: 0 0 20px rgba(255,255,255,0.05);
     }
+
     .product img {
       width: 100%;
       border-radius: 10px;
     }
+
     .price {
       font-size: 1.4em;
       margin: 15px 0;
       color: #f5c16c;
     }
-    .btn {
-      display: inline-block;
-      padding: 12px 20px;
-      background: #f5c16c;
-      color: black;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: bold;
+
+    ul {
+      list-style-type: none;
+      color: #d4d4d4;
+      padding: 0;
+      margin: 10px 0;
     }
+
+    /* About Section — Step 3 */
+    .about {
+      margin: 50px auto;
+      max-width: 600px;
+      color: silver;
+      text-align: center;
+    }
+
+    .about h2 {
+      color: #f5c16c;
+      font-size: 2em;
+      margin-bottom: 15px;
+    }
+
+    .about p {
+      font-size: 1em;
+      color: #d4d4d4;
+    }
+
+    /* Reviews Section — Step 5 */
+    .reviews {
+      margin-top: 50px;
+      padding: 20px;
+      background-color: #1c1c1c;
+      color: silver;
+      text-align: center;
+    }
+
+    .reviews h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #f5c16c;
+    }
+
+    .review {
+      margin-bottom: 20px;
+      border-bottom: 1px solid silver;
+      padding-bottom: 10px;
+    }
+
+    .review h3 {
+      margin: 0;
+      color: #f5f5f5;
+    }
+
+    .review p {
+      margin: 5px 0 0 0;
+      font-style: italic;
+      color: #d4d4d4;
+    }
+
     footer {
       margin-top: 60px;
       padding: 20px;
       font-size: 0.9em;
       color: #777;
     }
-    .reviews {
-  margin-top: 50px;
-  padding: 20px;
-  background-color: #1c1c1c;
-  color: silver;
-  text-align: center;
-}
-
-.reviews h2 {
-  font-size: 2em;
-  margin-bottom: 20px;
-}
-
-.review {
-  margin-bottom: 20px;
-  border-bottom: 1px solid silver;
-  padding-bottom: 10px;
-}
-
-.review h3 {
-  margin: 0;
-  color: #f5f5f5;
-}
-
-.review p {
-  margin: 5px 0 0 0;
-  font-style: italic;
-  color: #d4d4d4;
-    }
   </style>
 </head>
 <body>
 
+  <!-- Logo Header -->
   <header>
-    <h1>KALONJI LUXE</h1>
-    <p>Luxury Watches & Accessories</p>
+    <img src="logo.png" alt="KALONJI LUXE Logo" style="width:200px; max-width:80%;">
   </header>
 
+  <!-- Product 1 -->
   <div class="product">
-    <section class="about">
-  <h2>About KALONJI LUXE</h2>
-  <p>We create affordable luxury watches that combine style, quality, and elegance. Every piece is crafted for those who demand sophistication without compromise.</p>
-</section>
-
-<style>
-.about {
-  margin: 50px auto;
-  max-width: 600px;
-  color: silver;
-  text-align: center;
-}
-.about h2 {
-  color: #f5c16c;
-  font-size: 2em;
-  margin-bottom: 15px;
-}
-.about p {
-  font-size: 1em;
-  color: #d4d4d4;
-}
-</style>
-    <!-- Reviews Section -->
-<section class="reviews">
-  <h2>Customer Reviews</h2>
-  
-  <div class="review">
-    <h3>Jane D. ★★★★☆</h3>
-    <p>"Absolutely love my watch! Excellent quality and fast delivery."</p>
-  </div>
-  
-  <div class="review">
-    <h3>Mark T.</h3>
-    <p>"Great product for the price. Very stylish and comfortable."</p>
-  </div>
-  
-  <div class="review">
-    <h3>Sarah L.</h3>
-    <p>"I bought this as a gift and they were thrilled! Highly recommend."</p>
-  </div>
-</section>
     <img src="watch.png" alt="Luxury Watch">
     <h2>Luxury Watch</h2>
     <p class="price">R 825 <span style="font-size:14px; color:#aaa;">(Limited Offer)</span></p>
+    <!-- Step 1 — Trust & Delivery Info -->
     <p style="font-size:14px; color:#d4d4d4;">
-✔ Free delivery in SA • ✔ Cash on delivery available • ✔ 7-day return policy
+      ✔ Free delivery in SA • ✔ Cash on delivery available • ✔ 7-day return policy
     </p>
-    <ul style="list-style-type:none; color:#d4d4d4; padding:0;">
-  <li>• Stainless steel body</li>
-  <li>• Scratch-resistant glass</li>
-  <li>• Adjustable strap</li>
-  <li>• 1-year warranty</li>
-  </ul>
-    <a class="btn" href="https://wa.me/27632802346">Order on WhatsApp</a>
+    <!-- Step 4 — Product Details -->
+    <ul>
+      <li>• Stainless steel body</li>
+      <li>• Scratch-resistant glass</li>
+      <li>• Adjustable strap</li>
+      <li>• 1-year warranty</li>
+    </ul>
+    <a class="btn" href="https://wa.me/27YOURNUMBER">Order on WhatsApp</a>
   </div>
+
+  <!-- Step 3 — About Us -->
+  <section class="about">
+    <h2>About KALONJI LUXE</h2>
+    <p>We create affordable luxury watches that combine style, quality, and elegance. Every piece is crafted for those who demand sophistication without compromise.</p>
+  </section>
+
+  <!-- Step 5 — Reviews -->
+  <section class="reviews">
+    <h2>Customer Reviews</h2>
+
+    <div class="review">
+      <h3>Jane D. ★★★★☆</h3>
+      <p>"Absolutely love my watch! Excellent quality and fast delivery."</p>
+    </div>
+
+    <div class="review">
+      <h3>Mark T. ★★★★☆</h3>
+      <p>"Great product for the price. Very stylish and comfortable."</p>
+    </div>
+
+    <div class="review">
+      <h3>Sarah L. ★★★★★</h3>
+      <p>"I bought this as a gift and they were thrilled! Highly recommend."</p>
+    </div>
+  </section>
 
   <footer>
     © 2026 Kalonji Luxe. All rights reserved.
+    <p>
+      Follow us: <a href="https://instagram.com/kalonjiluxe" style="color:#f5c16c;">Instagram</a>
+    </p>
   </footer>
 
 </body>
