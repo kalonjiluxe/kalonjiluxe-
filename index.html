@@ -1,217 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kalonji Luxe – Luxury Pablo Raez Watches</title>
-  <meta name="description" content="Shop luxury Pablo Raez silver stainless steel watches. Water-resistant, premium quality. Order via WhatsApp now.">
-  <meta name="keywords" content="Kalonji Luxe, luxury watches, Pablo Raez, stainless steel, water-resistant">
-  <meta name="author" content="Shaden Kalonji">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KALONJI LUXE | Pablo Raez</title>
 
-  <!-- Google Site Verification -->
-  <meta name="google-site-verification" content="0TkvMV_i_ke7zPgfPxjxu8RPIvcZ2pM5nJjy-6gtHCA" />
+<!-- Google verification -->
+<meta name="google-site-verification" content="0TkvMV_i_ke7zPgfPxjxu8RPIvcZ2pM5nJjy-6gtHCA" />
 
-  <!-- CSS Styles -->
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(180deg, #000000, #1a1a1a);
-      color: #fff;
-    }
-    header {
-      text-align: center;
-      padding: 30px 0;
-    }
-    header img {
-      width: 250px;
-    }
-    .carousel {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      margin: 20px 0;
-      padding: 10px;
-    }
-    .carousel img {
-      height: 300px;
-      margin: 0 10px;
-      scroll-snap-align: start;
-      border-radius: 15px;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-    .carousel img:hover {
-      transform: scale(1.05);
-    }
-    .price {
-      text-align: center;
-      font-size: 28px;
-      color: gold;
-      margin: 15px 0;
-      font-weight: bold;
-    }
-    .whatsapp-btn {
-      display: block;
-      width: 220px;
-      margin: 10px auto 30px;
-      text-align: center;
-      background-color: #25D366;
-      color: white;
-      text-decoration: none;
-      padding: 12px;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 18px;
-    }
-    .reviews {
-      width: 90%;
-      max-width: 600px;
-      margin: 0 auto 50px;
-      background: #111;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    .review {
-      margin-bottom: 15px;
-    }
-    .stars {
-      color: gold;
-      font-size: 18px;
-    }
-    .half-star {
-      position: relative;
-      display: inline-block;
-      color: #ccc;
-      overflow: hidden;
-      width: 9px;
-    }
-    .half-star::before {
-      content: '★';
-      position: absolute;
-      color: gold;
-      width: 18px;
-      overflow: hidden;
-    }
+<!-- Meta for SEO -->
+<meta name="description" content="Buy luxury Pablo Raez watches online. Silver stainless steel, water-resistant, premium quality. Order via WhatsApp now.">
 
-    /* Lightbox Styles */
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      padding-top: 60px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background-color: rgba(0,0,0,0.95);
-    }
-    .lightbox-content {
-      position: relative;
-      margin: auto;
-      max-width: 90%;
-      max-height: 90%;
-    }
-    .lightbox-content img {
-      width: 100%;
-      height: auto;
-      border-radius: 15px;
-    }
-    .close {
-      position: absolute;
-      top: 20px;
-      right: 35px;
-      color: #fff;
-      font-size: 40px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .prev, .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      width: auto;
-      padding: 16px;
-      margin-top: -50px;
-      color: #fff;
-      font-weight: bold;
-      font-size: 30px;
-      transition: 0.3s;
-      user-select: none;
-      border-radius: 0 3px 3px 0;
-    }
-    .next {
-      right: 0;
-      border-radius: 3px 0 0 3px;
-    }
-    .prev:hover, .next:hover, .close:hover {
-      color: gold;
-    }
-  </style>
+<link rel="icon" type="image/png" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --gold: #c7a14a;
+  --gold-soft: #e6c97a;
+  --dark-bg: #0d0d0d;
+  --dark-grey: #1a1a1a;
+  --text-main: #f5f5f5;
+  --text-muted: #b5b5b5;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(circle at top, #141414, #090909);
+  color: var(--text-main);
+}
+
+/* Header */
+header {
+  text-align:center;
+  padding:30px 24px;
+}
+header img { height:150px; width:auto; margin-bottom:15px; }
+header .tagline { font-size:16px; color: var(--gold); letter-spacing:2px; }
+
+/* Gallery */
+.gallery-container {
+  max-width:500px;
+  margin:30px auto 10px;
+  text-align:center;
+}
+.gallery img {
+  width:100%;
+  height:350px;
+  object-fit:contain;
+  border-radius:12px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.gallery img:hover { transform: scale(1.02); }
+
+/* Price & CTA */
+.price { font-size:28px; color:var(--gold); font-weight:bold; margin-top:15px; }
+.order a {
+  display:inline-block; margin-top:15px;
+  padding:16px 38px; border-radius:50px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+  color:#000; font-weight:500;
+  box-shadow:0 10px 35px rgba(199,161,74,0.45);
+  text-decoration:none; font-size:16px;
+}
+
+/* Details */
+.details {
+  background: var(--dark-grey); padding:40px 24px; max-width:600px; margin:40px auto;
+  border-radius:12px;
+}
+.details h2 { color: var(--gold); font-family:'Playfair Display', serif; margin-bottom:20px; }
+.details ul { list-style:none; color: var(--text-muted); font-size:15px; }
+.details li { margin-bottom:10px; }
+
+/* Reviews */
+.reviews { padding:50px 24px; max-width:700px; margin:auto; }
+.reviews h2 { color:var(--gold); text-align:center; font-family:'Playfair Display', serif; margin-bottom:25px; }
+.review-box { background:#0f0f0f; padding:22px; border-radius:16px; margin-bottom:16px; border:1px solid rgba(199,161,74,0.15);}
+.review-box .stars { color:var(--gold); margin-bottom:8px; font-size:18px; }
+.review-box p { font-size:14px; color:var(--text-muted); }
+.review-box span { display:block; margin-top:10px; font-size:13px; color:var(--gold-soft); }
+
+/* Lightbox overlay */
+#lightbox {
+  position: fixed;
+  top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.9);
+  display:none; justify-content:center; align-items:center;
+  z-index:1000;
+}
+#lightbox img { max-width:90%; max-height:80%; border-radius:12px; }
+#lightbox .close { position:absolute; top:20px; right:30px; color:#fff; font-size:30px; cursor:pointer; }
+
+/* Footer */
+footer { text-align:center; padding:24px; font-size:14px; color: rgba(255,255,255,0.6); border-top:1px solid rgba(199,161,74,0.2); }
+
+/* Responsive */
+@media (max-width:600px) { .gallery img { height:300px; } }
+</style>
 </head>
 <body>
 
 <header>
   <img src="logo.png" alt="Kalonji Luxe Logo">
+  <div class="tagline">LUXURY TIMEPIECES</div>
 </header>
 
-<div class="carousel">
-  <img src="watch.png" alt="Front view" onclick="openLightbox(0)">
-  <img src="side.png" alt="Side view" onclick="openLightbox(1)">
-  <img src="back.png" alt="Back view" onclick="openLightbox(2)">
-  <img src="opp.png" alt="Opposite view" onclick="openLightbox(3)">
+<div class="gallery-container">
+  <div class="gallery">
+    <img src="watch.png" alt="Front view">
+    <img src="side.png" alt="Side view">
+    <img src="back.png" alt="Back view">
+    <img src="opp.png" alt="Opposite view">
+  </div>
+
+  <div class="price">R 825</div>
+  <div class="order">
+    <a href="https://wa.me/27632802346?text=Hello%20I%20would%20like%20to%20order%20the%20Pablo%20Raez%20watch">Order on WhatsApp</a>
+  </div>
 </div>
 
-<div class="price">R 825</div>
+<section class="details">
+  <h2>Specifications</h2>
+  <ul>
+    <li>• Stainless steel case & bracelet</li>
+    <li>• Water resistant</li>
+    <li>• Butterfly clasp</li>
+    <li>• Date display</li>
+    <li>• Everyday & formal wear</li>
+  </ul>
+</section>
 
-<a class="whatsapp-btn" href="https://wa.me/27632802346?text=Hello,%20I%20want%20to%20order%20the%20Pablo%20Raez%20watch">Order on WhatsApp</a>
+<section class="reviews">
+  <h2>Customer Reviews</h2>
 
-<div class="reviews">
-  <div class="review">
-    <div class="stars">★★★★<span class="half-star">★</span></div>
-    <p>“Amazing luxury watch, exactly as pictured!”</p>
+  <div class="review-box">
+    <div class="stars">★★★★☆</div>
+    <p>“Didn’t expect this level of quality. Feels solid and looks clean on the wrist.”</p>
+    <span>— Thabo M.</span>
   </div>
-  <div class="review">
+
+  <div class="review-box">
     <div class="stars">★★★★★</div>
-    <p>“Elegant and perfect for daily wear.”</p>
+    <p>“Simple, classy, and heavy enough to feel premium. I wear it daily.”</p>
+    <span>— Jason L.</span>
   </div>
-  <div class="review">
-    <div class="stars">★★★★<span class="half-star">★</span></div>
-    <p>“Great quality and very stylish.”</p>
+
+  <div class="review-box">
+    <div class="stars">★★★★½</div>
+    <p>“The finish is neat. I get compliments almost every time I wear it.”</p>
+    <span>— Kabelo R.</span>
   </div>
-</div>
+</section>
 
 <!-- Lightbox -->
-<div id="lightbox" class="lightbox">
-  <span class="close" onclick="closeLightbox()">&times;</span>
-  <img class="lightbox-content" id="lightbox-img">
-  <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-  <a class="next" onclick="changeSlide(1)">&#10095;</a>
+<div id="lightbox">
+  <span class="close">&times;</span>
+  <img src="" alt="Zoomed watch">
 </div>
 
+<footer>
+  &copy; 2026 Kalonji Luxe. All rights reserved.
+</footer>
+
 <script>
-  const images = ['watch.png','side.png','back.png','opp.png'];
-  let currentIndex = 0;
+const galleryImages = document.querySelectorAll('.gallery img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = lightbox.querySelector('img');
+const closeBtn = lightbox.querySelector('.close');
+let currentIndex = 0;
 
-  function openLightbox(index){
-    currentIndex = index;
-    document.getElementById('lightbox').style.display = 'block';
-    document.getElementById('lightbox-img').src = images[currentIndex];
-  }
+// Open lightbox
+galleryImages.forEach((img, idx)=>{
+  img.addEventListener('click', ()=>{
+    lightbox.style.display='flex';
+    lightboxImg.src = img.src;
+    currentIndex=idx;
+  });
+});
 
-  function closeLightbox(){
-    document.getElementById('lightbox').style.display = 'none';
-  }
+// Close lightbox
+closeBtn.addEventListener('click', ()=> lightbox.style.display='none');
+lightbox.addEventListener('click', e=>{
+  if(e.target===lightbox) lightbox.style.display='none';
+});
 
-  function changeSlide(n){
-    currentIndex += n;
-    if(currentIndex < 0) currentIndex = images.length - 1;
-    if(currentIndex >= images.length) currentIndex = 0;
-    document.getElementById('lightbox-img').src = images[currentIndex];
-  }
+// Swipe functionality inside lightbox
+let startX=0;
+lightboxImg.addEventListener('touchstart', e=> startX=e.touches[0].clientX);
+lightboxImg.addEventListener('touchend', e=>{
+  let endX=e.changedTouches[0].clientX;
+  if(startX-endX>40){ currentIndex++; if(currentIndex>=galleryImages.length) currentIndex=0; lightboxImg.src=galleryImages[currentIndex].src; }
+  if(endX-startX>40){ currentIndex--; if(currentIndex<0) currentIndex=galleryImages.length-1; lightboxImg.src=galleryImages[currentIndex].src; }
+});
 </script>
 
 </body>
-  </html>
+</html>
