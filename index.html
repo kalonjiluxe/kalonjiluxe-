@@ -1,238 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>KALONJI LUXE | Pablo Raez</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="logo.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pablo Raez Luxury Watches</title>
+  <style>
+    /* Root colors */
+    :root {
+      --gold: #c7a14a;
+      --dark-bg: #0d0d0d;
+      --dark-grey: #1a1a1a;
+      --light-grey: #f5f5f5;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
 
-<style>
-:root {
-  --bg-main: #0a0a0a;
-  --bg-soft: #121212;
-  --gold: #c7a14a;
-  --gold-soft: #e6c97a;
-  --text-main: #f2f2f2;
-  --text-muted: #b5b5b5;
-}
+    body {
+      background-color: var(--dark-bg);
+      color: var(--light-grey);
+    }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: radial-gradient(circle at top, #141414, #090909);
-  color: var(--text-main);
-}
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-/* HEADER */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 24px;
-  border-bottom: 1px solid rgba(199,161,74,0.2);
-}
+    /* Header */
+    header {
+      text-align: center;
+      padding: 30px 24px;
+      border-bottom: 1px solid rgba(199,161,74,0.2);
+    }
 
-header img { height: 44px; }
+    header img {
+      height: 80px;
+      margin: 0 auto 12px;
+    }
 
-header remember {
-  font-size: 12px;
-  letter-spacing: 2px;
-  color: var(--gold);
-}
+    header .tagline {
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      display: block;
+    }
 
-/* HERO */
-.hero {
-  padding: 60px 24px 40px;
-  text-align: center;
-}
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 40px 24px;
+    }
 
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 38px;
-  margin-bottom: 10px;
-}
+    .hero h1 {
+      font-size: 36px;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
 
-.hero p {
-  max-width: 520px;
-  margin: auto;
-  color: var(--text-muted);
-  font-size: 15px;
-}
+    .hero p {
+      font-size: 16px;
+      margin-bottom: 24px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
 
-.price {
-  margin-top: 18px;
-  font-size: 28px;
-  color: var(--gold-soft);
-}
+    .hero .price {
+      font-size: 28px;
+      color: var(--gold);
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
 
-/* GALLERY */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 22px;
-  padding: 50px 24px;
-}
+    /* Image gallery / slider */
+    .gallery {
+      position: relative;
+      max-width: 500px;
+      margin: 0 auto 60px;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 2px solid rgba(199,161,74,0.2);
+    }
 
-.gallery img {
-  width: 100%;
-  border-radius: 14px;
-  box-shadow: 0 15px 45px rgba(0,0,0,0.65);
-}
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      touch-action: pan-y;
+    }
 
-/* DETAILS */
-.details {
-  background: var(--bg-soft);
-  padding: 50px 24px;
-}
+    .slides img {
+      width: 100%;
+      flex-shrink: 0;
+    }
 
-.details h2 {
-  font-family: 'Playfair Display', serif;
-  color: var(--gold);
-  margin-bottom: 18px;
-}
+    /* Navigation dots */
+    .dots {
+      text-align: center;
+      margin-top: 12px;
+    }
 
-.details ul {
-  list-style: none;
-  color: var(--text-muted);
-  font-size: 15px;
-}
+    .dot {
+      height: 12px;
+      width: 12px;
+      margin: 0 6px;
+      display: inline-block;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
 
-.details li {
-  margin-bottom: 10px;
-}
+    .dot.active {
+      background-color: var(--gold);
+    }
 
-/* REVIEWS */
-.reviews {
-  padding: 55px 24px;
-}
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 24px;
+      border-top: 1px solid rgba(199,161,74,0.2);
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+    }
 
-.reviews h2 {
-  font-family: 'Playfair Display', serif;
-  color: var(--gold);
-  margin-bottom: 25px;
-  text-align: center;
-}
+    /* Swipe support for mobile */
+    @media (hover: none) {
+      .slides {
+        scroll-snap-type: x mandatory;
+        overflow-x: scroll;
+      }
 
-.review-box {
-  max-width: 700px;
-  margin: auto;
-  background: #0f0f0f;
-  border-radius: 16px;
-  padding: 22px;
-  margin-bottom: 16px;
-  border: 1px solid rgba(199,161,74,0.15);
-}
+      .slides img {
+        scroll-snap-align: start;
+      }
+    }
 
-.review-box p {
-  color: var(--text-muted);
-  font-size: 14px;
-}
-
-.review-box span {
-  display: block;
-  margin-top: 10px;
-  color: var(--gold-soft);
-  font-size: 13px;
-}
-
-/* ORDER */
-.order {
-  text-align: center;
-  padding: 60px 24px;
-}
-
-.order a {
-  display: inline-block;
-  padding: 16px 38px;
-  border-radius: 50px;
-  background: linear-gradient(135deg, #c7a14a, #e6c97a);
-  color: #000;
-  text-decoration: none;
-  font-weight: 500;
-  box-shadow: 0 10px 35px rgba(199,161,74,0.45);
-}
-
-/* FOOTER */
-footer {
-  padding: 22px;
-  text-align: center;
-  font-size: 13px;
-  color: #888;
-  border-top: 1px solid rgba(199,161,74,0.15);
-}
-
-/* MOBILE TWEAKS */
-@media (max-width: 600px) {
-  .hero h1 { font-size: 32px; }
-  .price { font-size: 24px; }
-}
-</style>
+  </style>
 </head>
-
 <body>
 
-<header>
-  <img src="logo.png" alt="Kalonji Luxe">
-  <remember>LUXURY TIMEPIECES</remember>
-</header>
+  <!-- Header -->
+  <header>
+    <img src="logo.png" alt="Pablo Raez Logo">
+    <span class="tagline">LUXURY TIMEPIECES</span>
+  </header>
 
-<section class="hero">
-  <h1>Pablo Raez</h1>
-  <p>
-    A stainless-steel timepiece selected for presence, confidence,
-    and understated elegance.
-  </p>
-  <div class="price">R 825</div>
-</section>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Pablo Raez</h1>
+    <p>
+      A stainless-steel timepiece selected for presence, confidence,
+      and understated elegance. Swipe or click below to explore multiple angles of the watch.
+    </p>
+    <div class="price">R 825</div>
 
-<section class="gallery">
-  <img src="front.jpg" alt="Front view">
-  <img src="side.jpg" alt="Side view">
-  <img src="back.jpg" alt="Back view">
-</section>
+    <!-- Image Gallery -->
+    <div class="gallery">
+      <div class="slides">
+        <img src="watch.png" alt="Front view">
+        <img src="side.png" alt="Side view">
+        <img src="back.png" alt="Back view">
+        <img src="opp.png" alt="Opposite view">
+      </div>
+      <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+  </section>
 
-<section class="details">
-  <h2>Specifications</h2>
-  <ul>
-    <li>• Stainless steel case & bracelet</li>
-    <li>• Water resistant</li>
-    <li>• Butterfly clasp</li>
-    <li>• Date display</li>
-    <li>• Everyday & formal wear</li>
-  </ul>
-</section>
+  <!-- Footer -->
+  <footer>
+    &copy; 2026 Pablo Raez Watches. All Rights Reserved.
+  </footer>
 
-<section class="reviews">
-  <h2>Customer Reviews</h2>
+  <script>
+    // Gallery functionality
+    const slides = document.querySelector('.slides');
+    const images = slides.querySelectorAll('img');
+    const dots = document.querySelectorAll('.dot');
+    let currentIndex = 0;
 
-  <div class="review-box">
-    <p>“Didn’t expect this level of quality. Feels solid and looks clean on the wrist.”</p>
-    <span>— Thabo M.</span>
-  </div>
+    function showSlide(index) {
+      if(index >= images.length) index = 0;
+      if(index < 0) index = images.length - 1;
+      slides.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[index].classList.add('active');
+      currentIndex = index;
+    }
 
-  <div class="review-box">
-    <p>“Simple, classy, and heavy enough to feel premium. I wear it daily.”</p>
-    <span>— Jason L.</span>
-  </div>
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => showSlide(idx));
+    });
 
-  <div class="review-box">
-    <p>“The finish is neat. I get compliments almost every time I wear it.”</p>
-    <span>— Kabelo R.</span>
-  </div>
-</section>
-
-<section class="order">
-  <a href="https://wa.me/27632802346?text=Hello%20I%20would%20like%20to%20order%20the%20Pablo%20Raez%20watch">
-    Order on WhatsApp
-  </a>
-</section>
-
-<footer>
-  © 2026 Kalonji Luxe. All rights reserved.
-</footer>
+    // Optional: swipe support for touch devices
+    let startX = 0;
+    slides.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    slides.addEventListener('touchend', e => {
+      let endX = e.changedTouches[0].clientX;
+      if(startX - endX > 40) showSlide(currentIndex + 1);
+      if(endX - startX > 40) showSlide(currentIndex - 1);
+    });
+  </script>
 
 </body>
 </html>
