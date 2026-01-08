@@ -37,27 +37,57 @@ header {
   text-align:center;
   padding:30px 24px;
 }
-header img { height:150px; width:auto; margin-bottom:15px; }
-header .tagline { font-size:16px; color: var(--gold); letter-spacing:2px; }
 
-/* Gallery */
+header img {
+  height:150px; /* Bigger logo */
+  width:auto;
+  margin-bottom:15px;
+}
+
+header .tagline {
+  font-size:16px;
+  color: var(--gold);
+  letter-spacing:2px;
+}
+
+/* Gallery Section */
 .gallery-container {
   max-width:500px;
-  margin:30px auto 10px;
+  margin: 30px auto 10px;
   text-align:center;
 }
-.gallery img {
-  width:100%;
-  height:350px;
-  object-fit:contain;
+
+.gallery {
+  overflow:hidden;
   border-radius:12px;
-  cursor:pointer;
+  border:2px solid rgba(199,161,74,0.2);
+}
+
+.slides {
+  display:flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slides img {
+  width:100%;
+  height:350px; /* reduced height for less stretch */
+  object-fit:contain;
+  flex-shrink:0;
+}
+
+.dots { text-align:center; margin-top:10px; }
+.dot {
+  height:12px; width:12px; margin:0 5px; display:inline-block;
+  border-radius:50%; background: rgba(255,255,255,0.3); cursor:pointer;
   transition:0.3s;
 }
-.gallery img:hover { transform: scale(1.02); }
+.dot.active { background-color: var(--gold); }
 
-/* Price & CTA */
-.price { font-size:28px; color:var(--gold); font-weight:bold; margin-top:15px; }
+/* Price and CTA */
+.price { 
+  font-size:28px; color:var(--gold); font-weight:bold; margin-top:15px;
+}
+
 .order a {
   display:inline-block; margin-top:15px;
   padding:16px 38px; border-radius:50px;
@@ -72,6 +102,7 @@ header .tagline { font-size:16px; color: var(--gold); letter-spacing:2px; }
   background: var(--dark-grey); padding:40px 24px; max-width:600px; margin:40px auto;
   border-radius:12px;
 }
+
 .details h2 { color: var(--gold); font-family:'Playfair Display', serif; margin-bottom:20px; }
 .details ul { list-style:none; color: var(--text-muted); font-size:15px; }
 .details li { margin-bottom:10px; }
@@ -84,22 +115,11 @@ header .tagline { font-size:16px; color: var(--gold); letter-spacing:2px; }
 .review-box p { font-size:14px; color:var(--text-muted); }
 .review-box span { display:block; margin-top:10px; font-size:13px; color:var(--gold-soft); }
 
-/* Lightbox overlay */
-#lightbox {
-  position: fixed;
-  top:0; left:0; width:100%; height:100%;
-  background: rgba(0,0,0,0.9);
-  display:none; justify-content:center; align-items:center;
-  z-index:1000;
-}
-#lightbox img { max-width:90%; max-height:80%; border-radius:12px; }
-#lightbox .close { position:absolute; top:20px; right:30px; color:#fff; font-size:30px; cursor:pointer; }
-
 /* Footer */
 footer { text-align:center; padding:24px; font-size:14px; color: rgba(255,255,255,0.6); border-top:1px solid rgba(199,161,74,0.2); }
 
 /* Responsive */
-@media (max-width:600px) { .gallery img { height:300px; } }
+@media (max-width:600px) { .slides img { height:300px; } }
 </style>
 </head>
 <body>
@@ -111,12 +131,21 @@ footer { text-align:center; padding:24px; font-size:14px; color: rgba(255,255,25
 
 <div class="gallery-container">
   <div class="gallery">
-    <img src="watch.png" alt="Front view">
-    <img src="side.png" alt="Side view">
-    <img src="back.png" alt="Back view">
-    <img src="opp.png" alt="Opposite view">
+    <div class="slides">
+      <img src="watch.png" alt="Front view">
+      <img src="side.png" alt="Side view">
+      <img src="back.png" alt="Back view">
+      <img src="opp.png" alt="Opposite view">
+    </div>
+  </div>
+  <div class="dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
   </div>
 
+  <!-- Price & Order -->
   <div class="price">R 825</div>
   <div class="order">
     <a href="https://wa.me/27632802346?text=Hello%20I%20would%20like%20to%20order%20the%20Pablo%20Raez%20watch">Order on WhatsApp</a>
@@ -156,45 +185,35 @@ footer { text-align:center; padding:24px; font-size:14px; color: rgba(255,255,25
   </div>
 </section>
 
-<!-- Lightbox -->
-<div id="lightbox">
-  <span class="close">&times;</span>
-  <img src="" alt="Zoomed watch">
-</div>
-
 <footer>
   &copy; 2026 Kalonji Luxe. All rights reserved.
 </footer>
 
 <script>
-const galleryImages = document.querySelectorAll('.gallery img');
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = lightbox.querySelector('img');
-const closeBtn = lightbox.querySelector('.close');
+const slides = document.querySelector('.slides');
+const images = slides.querySelectorAll('img');
+const dots = document.querySelectorAll('.dot');
 let currentIndex = 0;
 
-// Open lightbox
-galleryImages.forEach((img, idx)=>{
-  img.addEventListener('click', ()=>{
-    lightbox.style.display='flex';
-    lightboxImg.src = img.src;
-    currentIndex=idx;
-  });
-});
+function showSlide(index){
+  if(index >= images.length) index=0;
+  if(index <0) index = images.length-1;
+  slides.style.transform = `translateX(-${index*100}%)`;
+  dots.forEach(dot=>dot.classList.remove('active'));
+  dots[index].classList.add('active');
+  currentIndex=index;
+}
 
-// Close lightbox
-closeBtn.addEventListener('click', ()=> lightbox.style.display='none');
-lightbox.addEventListener('click', e=>{
-  if(e.target===lightbox) lightbox.style.display='none';
-});
+// Dots click
+dots.forEach((dot, idx)=>dot.addEventListener('click', ()=>showSlide(idx)));
 
-// Swipe functionality inside lightbox
+// Swipe
 let startX=0;
-lightboxImg.addEventListener('touchstart', e=> startX=e.touches[0].clientX);
-lightboxImg.addEventListener('touchend', e=>{
+slides.addEventListener('touchstart', e=>startX=e.touches[0].clientX);
+slides.addEventListener('touchend', e=>{
   let endX=e.changedTouches[0].clientX;
-  if(startX-endX>40){ currentIndex++; if(currentIndex>=galleryImages.length) currentIndex=0; lightboxImg.src=galleryImages[currentIndex].src; }
-  if(endX-startX>40){ currentIndex--; if(currentIndex<0) currentIndex=galleryImages.length-1; lightboxImg.src=galleryImages[currentIndex].src; }
+  if(startX-endX>40) showSlide(currentIndex+1);
+  if(endX-startX>40) showSlide(currentIndex-1);
 });
 </script>
 
