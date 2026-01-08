@@ -1,221 +1,309 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pablo Raez Luxury Watches</title>
-  <style>
-    /* Root colors */
-    :root {
-      --gold: #c7a14a;
-      --dark-bg: #0d0d0d;
-      --dark-grey: #1a1a1a;
-      --light-grey: #f5f5f5;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KALONJI LUXE | Pablo Raez</title>
 
-    /* Reset and base styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    }
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="logo.png">
 
-    body {
-      background-color: var(--dark-bg);
-      color: var(--light-grey);
-    }
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+<style>
+:root {
+  --gold: #c7a14a;
+  --gold-soft: #e6c97a;
+  --dark-bg: #0d0d0d;
+  --dark-grey: #1a1a1a;
+  --text-main: #f5f5f5;
+  --text-muted: #b5b5b5;
+}
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
+* { margin:0; padding:0; box-sizing:border-box; }
 
-    /* Header */
-    header {
-      text-align: center;
-      padding: 30px 24px;
-      border-bottom: 1px solid rgba(199,161,74,0.2);
-    }
+body {
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(circle at top, #141414, #090909);
+  color: var(--text-main);
+}
 
-    header img {
-      height: 80px;
-      margin: 0 auto 12px;
-    }
+/* Header */
+header {
+  text-align:center;
+  padding:30px 24px;
+  border-bottom: 1px solid rgba(199,161,74,0.2);
+}
 
-    header .tagline {
-      font-size: 14px;
-      letter-spacing: 2px;
-      color: var(--gold);
-      display: block;
-    }
+header img {
+  height: 80px;
+  margin: 0 auto 12px;
+}
 
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      padding: 40px 24px;
-    }
+header .tagline {
+  font-size:14px;
+  letter-spacing:2px;
+  color: var(--gold);
+  display:block;
+}
 
-    .hero h1 {
-      font-size: 36px;
-      color: var(--gold);
-      margin-bottom: 16px;
-    }
+/* Hero Section */
+.hero {
+  text-align:center;
+  padding:40px 24px 20px;
+}
 
-    .hero p {
-      font-size: 16px;
-      margin-bottom: 24px;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-    }
+.hero h1 {
+  font-family:'Playfair Display', serif;
+  font-size:36px;
+  color:var(--gold);
+  margin-bottom:16px;
+}
 
-    .hero .price {
-      font-size: 28px;
-      color: var(--gold);
-      font-weight: bold;
-      margin-bottom: 40px;
-    }
+.hero p {
+  font-size:16px;
+  margin:0 auto 24px;
+  max-width:500px;
+  line-height:1.6;
+  color: var(--text-muted);
+}
 
-    /* Image gallery / slider */
-    .gallery {
-      position: relative;
-      max-width: 500px;
-      margin: 0 auto 60px;
-      overflow: hidden;
-      border-radius: 12px;
-      border: 2px solid rgba(199,161,74,0.2);
-    }
+.price {
+  font-size:28px;
+  color:var(--gold);
+  font-weight:bold;
+  margin-bottom:40px;
+}
 
-    .slides {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-      touch-action: pan-y;
-    }
+/* Gallery */
+.gallery {
+  max-width:500px;
+  margin:0 auto 40px;
+  position:relative;
+  overflow:hidden;
+  border-radius:12px;
+  border:2px solid rgba(199,161,74,0.2);
+}
 
-    .slides img {
-      width: 100%;
-      flex-shrink: 0;
-    }
+.slides {
+  display:flex;
+  transition: transform 0.5s ease-in-out;
+}
 
-    /* Navigation dots */
-    .dots {
-      text-align: center;
-      margin-top: 12px;
-    }
+.slides img {
+  width:100%;
+  flex-shrink:0;
+}
 
-    .dot {
-      height: 12px;
-      width: 12px;
-      margin: 0 6px;
-      display: inline-block;
-      border-radius: 50%;
-      background-color: rgba(255,255,255,0.3);
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
+/* Dots */
+.dots {
+  text-align:center;
+  margin-top:12px;
+}
 
-    .dot.active {
-      background-color: var(--gold);
-    }
+.dot {
+  height:12px;
+  width:12px;
+  margin:0 6px;
+  display:inline-block;
+  border-radius:50%;
+  background-color: rgba(255,255,255,0.3);
+  cursor:pointer;
+  transition: background-color 0.3s;
+}
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 24px;
-      border-top: 1px solid rgba(199,161,74,0.2);
-      font-size: 14px;
-      color: rgba(255,255,255,0.6);
-    }
+.dot.active {
+  background-color: var(--gold);
+}
 
-    /* Swipe support for mobile */
-    @media (hover: none) {
-      .slides {
-        scroll-snap-type: x mandatory;
-        overflow-x: scroll;
-      }
+/* Details */
+.details {
+  background: var(--dark-grey);
+  padding:40px 24px;
+}
 
-      .slides img {
-        scroll-snap-align: start;
-      }
-    }
+.details h2 {
+  font-family:'Playfair Display', serif;
+  color:var(--gold);
+  margin-bottom:20px;
+}
 
-  </style>
+.details ul {
+  list-style:none;
+  font-size:15px;
+  color:var(--text-muted);
+}
+
+.details li {
+  margin-bottom:10px;
+}
+
+/* Reviews */
+.reviews {
+  padding:50px 24px;
+}
+
+.reviews h2 {
+  font-family:'Playfair Display', serif;
+  color: var(--gold);
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.review-box {
+  max-width:700px;
+  margin:auto;
+  background: #0f0f0f;
+  border-radius:16px;
+  padding:22px;
+  margin-bottom:16px;
+  border: 1px solid rgba(199,161,74,0.15);
+}
+
+.review-box .stars {
+  font-size: 18px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.review-box p { font-size:14px; color:var(--text-muted); }
+.review-box span { display:block; margin-top:10px; color: var(--gold-soft); font-size:13px; }
+
+/* Order Button */
+.order {
+  text-align:center;
+  padding:50px 24px;
+}
+
+.order a {
+  display:inline-block;
+  padding:16px 38px;
+  border-radius:50px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+  color:#000;
+  font-weight:500;
+  box-shadow:0 10px 35px rgba(199,161,74,0.45);
+  text-decoration:none;
+  font-size:16px;
+}
+
+/* Footer */
+footer {
+  text-align:center;
+  padding:24px;
+  border-top:1px solid rgba(199,161,74,0.2);
+  font-size:14px;
+  color: rgba(255,255,255,0.6);
+}
+
+/* Mobile tweaks */
+@media (max-width:600px) {
+  .hero h1 { font-size:32px; }
+  .price { font-size:24px; }
+}
+</style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <img src="logo.png" alt="Pablo Raez Logo">
-    <span class="tagline">LUXURY TIMEPIECES</span>
-  </header>
+<header>
+  <img src="logo.png" alt="Kalonji Luxe Logo">
+  <span class="tagline">LUXURY TIMEPIECES</span>
+</header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>Pablo Raez</h1>
-    <p>
-      A stainless-steel timepiece selected for presence, confidence,
-      and understated elegance. Swipe or click below to explore multiple angles of the watch.
-    </p>
-    <div class="price">R 825</div>
+<section class="hero">
+  <h1>Pablo Raez</h1>
+  <p>A stainless-steel timepiece selected for presence, confidence, and understated elegance. Swipe or click the images to view different angles of the watch.</p>
+  <div class="price">R 825</div>
 
-    <!-- Image Gallery -->
-    <div class="gallery">
-      <div class="slides">
-        <img src="watch.png" alt="Front view">
-        <img src="side.png" alt="Side view">
-        <img src="back.png" alt="Back view">
-        <img src="opp.png" alt="Opposite view">
-      </div>
-      <div class="dots">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </div>
+  <!-- Image Gallery -->
+  <div class="gallery">
+    <div class="slides">
+      <img src="watch.png" alt="Front view">
+      <img src="side.png" alt="Side view">
+      <img src="back.png" alt="Back view">
+      <img src="opp.png" alt="Opposite view">
     </div>
-  </section>
+    <div class="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    &copy; 2026 Pablo Raez Watches. All Rights Reserved.
-  </footer>
+<section class="details">
+  <h2>Specifications</h2>
+  <ul>
+    <li>• Stainless steel case & bracelet</li>
+    <li>• Water resistant</li>
+    <li>• Butterfly clasp</li>
+    <li>• Date display</li>
+    <li>• Everyday & formal wear</li>
+  </ul>
+</section>
 
-  <script>
-    // Gallery functionality
-    const slides = document.querySelector('.slides');
-    const images = slides.querySelectorAll('img');
-    const dots = document.querySelectorAll('.dot');
-    let currentIndex = 0;
+<section class="reviews">
+  <h2>Customer Reviews</h2>
 
-    function showSlide(index) {
-      if(index >= images.length) index = 0;
-      if(index < 0) index = images.length - 1;
-      slides.style.transform = `translateX(-${index * 100}%)`;
-      dots.forEach(dot => dot.classList.remove('active'));
-      dots[index].classList.add('active');
-      currentIndex = index;
-    }
+  <div class="review-box">
+    <div class="stars">★★★★☆</div>
+    <p>“Didn’t expect this level of quality. Feels solid and looks clean on the wrist.”</p>
+    <span>— Thabo M.</span>
+  </div>
 
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => showSlide(idx));
-    });
+  <div class="review-box">
+    <div class="stars">★★★★★</div>
+    <p>“Simple, classy, and heavy enough to feel premium. I wear it daily.”</p>
+    <span>— Jason L.</span>
+  </div>
 
-    // Optional: swipe support for touch devices
-    let startX = 0;
-    slides.addEventListener('touchstart', e => startX = e.touches[0].clientX);
-    slides.addEventListener('touchend', e => {
-      let endX = e.changedTouches[0].clientX;
-      if(startX - endX > 40) showSlide(currentIndex + 1);
-      if(endX - startX > 40) showSlide(currentIndex - 1);
-    });
-  </script>
+  <div class="review-box">
+    <div class="stars">★★★★½</div>
+    <p>“The finish is neat. I get compliments almost every time I wear it.”</p>
+    <span>— Kabelo R.</span>
+  </div>
+</section>
+
+<section class="order">
+  <a href="https://wa.me/27632802346?text=Hello%20I%20would%20like%20to%20order%20the%20Pablo%20Raez%20watch">
+    Order on WhatsApp
+  </a>
+</section>
+
+<footer>
+  &copy; 2026 Kalonji Luxe. All rights reserved.
+</footer>
+
+<script>
+const slides = document.querySelector('.slides');
+const images = slides.querySelectorAll('img');
+const dots = document.querySelectorAll('.dot');
+let currentIndex = 0;
+
+function showSlide(index) {
+  if(index >= images.length) index = 0;
+  if(index < 0) index = images.length - 1;
+  slides.style.transform = `translateX(-${index * 100}%)`;
+  dots.forEach(dot => dot.classList.remove('active'));
+  dots[index].classList.add('active');
+  currentIndex = index;
+}
+
+dots.forEach((dot, idx) => {
+  dot.addEventListener('click', () => showSlide(idx));
+});
+
+// Swipe support
+let startX = 0;
+slides.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+slides.addEventListener('touchend', e => {
+  let endX = e.changedTouches[0].clientX;
+  if(startX - endX > 40) showSlide(currentIndex + 1);
+  if(endX - startX > 40) showSlide(currentIndex - 1);
+});
+</script>
 
 </body>
 </html>
