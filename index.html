@@ -32,9 +32,17 @@ header {
   padding:30px 24px;
 }
 
-header img { height: 80px; margin:0 auto; }
+header img {
+  height:150px; /* Bigger logo */
+  width:auto;
+  margin-bottom:15px;
+}
 
-header .tagline { font-size:14px; color: var(--gold); letter-spacing:2px; }
+header .tagline {
+  font-size:16px;
+  color: var(--gold);
+  letter-spacing:2px;
+}
 
 /* Gallery Section */
 .gallery-container {
@@ -201,10 +209,7 @@ slides.addEventListener('touchend', e=>{
   if(startX-endX>40) showSlide(currentIndex+1);
   if(endX-startX>40) showSlide(currentIndex-1);
 });
-
-// Auto-slide
-setInterval(()=>{ showSlide(currentIndex+1); }, 3000);
 </script>
 
 </body>
-      </html>
+</html>
