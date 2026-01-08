@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Main page -->
   <url>
     <loc>https://kalonjiluxe.github.io/kalonjiluxe-/</loc>
     <priority>1.0</priority>
+
+    <!-- Images -->
+    <image:image>
+      <image:loc>https://kalonjiluxe.github.io/kalonjiluxe-/watch.png</image:loc>
+      <image:caption>Front view of Pablo Raez luxury watch</image:caption>
+      <image:title>Pablo Raez Front View</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://kalonjiluxe.github.io/kalonjiluxe-/side.png</image:loc>
+      <image:caption>Side view of Pablo Raez luxury watch</image:caption>
+      <image:title>Pablo Raez Side View</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://kalonjiluxe.github.io/kalonjiluxe-/back.png</image:loc>
+      <image:caption>Back view of Pablo Raez luxury watch</image:caption>
+      <image:title>Pablo Raez Back View</image:title>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://kalonjiluxe.github.io/kalonjiluxe-/opp.png</image:loc>
+      <image:caption>Opposite view of Pablo Raez luxury watch</image:caption>
+      <image:title>Pablo Raez Opposite View</image:title>
+    </image:image>
+
   </url>
 </urlset>
