@@ -13,37 +13,45 @@ body{
   font-family: 'Poppins', Arial, sans-serif;
   background: linear-gradient(135deg, #1b1b1b, #3a2b0f, #0b0b0b, #2c1e0c);
   background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
   color:#fff;
+}
+
+@keyframes gradientMove {
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
 
 /* HERO */
 .hero{
   text-align:center;
-  padding:90px 20px;
+  padding:70px 20px 40px 20px;
 }
 
 .hero img.logo{
-  width:300px; /* BIG logo */
+  width:400px; /* BIG logo */
   height:auto;
   margin-bottom:25px;
 }
 
 .hero h1{
-  font-size:32px; /* reduced font size */
-  margin-bottom:20px;
+  font-size:28px; /* smaller heading */
+  margin-bottom:10px;
   color:#f5d97c;
 }
 
 .hero p{
   max-width:720px;
   margin:auto;
-  font-size:17px;
+  font-size:18px;
   color:#e0d7b1;
+  font-weight:500;
 }
 
 /* BUTTONS */
 .buttons{
-  margin-top:35px;
+  margin-top:20px;
 }
 
 .hero a{
@@ -79,14 +87,14 @@ body{
 }
 
 .product h2{
-  font-size:36px;
+  font-size:38px; /* slightly bigger */
   margin-bottom:15px;
   color:#f5d97c;
 }
 
 .price{
   margin:15px 0 20px;
-  font-size:28px;
+  font-size:30px; /* slightly bigger */
 }
 
 .old-price{
@@ -105,8 +113,8 @@ body{
 }
 
 .gallery img{
-  width:200px;
-  height:240px;
+  width:220px; /* bigger images */
+  height:260px;
   object-fit:contain;
   background:#111;
   border-radius:12px;
@@ -150,7 +158,7 @@ body{
 .whatsapp{
   display:inline-block;
   margin-top:25px;
-  background:#d6c29b; /* soft beige */
+  background:#d6c29b; /* beige button */
   color:#111;
   padding:16px 34px;
   border-radius:50px;
@@ -255,8 +263,8 @@ footer{
 }
 
 @media(max-width:600px){
-  .hero img.logo{width:200px;}
-  .hero h1{font-size:24px;}
+  .hero img.logo{width:300px;}
+  .hero h1{font-size:22px;}
   .gallery img{width:160px;height:200px;}
 }
 </style>
@@ -268,7 +276,7 @@ footer{
 <section class="hero" id="hero">
   <img src="logo.png" class="logo" alt="KalonjiLuxe Logo">
   <h1>KalonjiLuxe Luxury Watches</h1>
-  <p>Premium stainless steel watches, water-resistant, crafted for style and durability.</p>
+  <p>Turn heads everywhere you go – Pablo Raez, crafted for style and precision.</p>
 
   <div class="buttons">
     <a href="#learn-more" class="secondary">Learn More</a>
@@ -420,4 +428,4 @@ function submitReview(){
 </script>
 
 </body>
-  </html>
+    </html>
