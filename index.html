@@ -3,218 +3,225 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KALONJI LUXE | Pablo Raez</title>
 
-<!-- Google verification -->
+<title>KALONJILUXE | Luxury Watches</title>
+
+<meta name="description" content="KALONJILUXE luxury stainless steel watches. Water-resistant, durable, and affordable elegance.">
+
 <meta name="google-site-verification" content="0TkvMV_i_ke7zPgfPxjxu8RPIvcZ2pM5nJjy-6gtHCA" />
 
-<!-- Meta for SEO -->
-<meta name="description" content="Buy luxury Pablo Raez watches online. Silver stainless steel, water-resistant, premium quality. Order via WhatsApp now.">
-
-<link rel="icon" type="image/png" href="logo.png">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
 <style>
-:root {
-  --gold: #c7a14a;
-  --gold-soft: #e6c97a;
-  --dark-bg: #0d0d0d;
-  --dark-grey: #1a1a1a;
-  --text-main: #f5f5f5;
-  --text-muted: #b5b5b5;
+body{
+  margin:0;
+  font-family:Poppins,Arial,sans-serif;
+  background:#0b0b0b;
+  color:#fff;
 }
 
-* { margin:0; padding:0; box-sizing:border-box; }
-
-body {
-  font-family: 'Inter', sans-serif;
-  background: radial-gradient(circle at top, #141414, #090909);
-  color: var(--text-main);
-}
-
-/* Header */
-header {
+/* HERO */
+.hero{
+  background:#f6f4ef;
+  color:#111;
   text-align:center;
-  padding:30px 24px;
+  padding:60px 20px;
 }
-
-header img {
-  height:150px; /* Bigger logo */
-  width:auto;
+.hero img{
+  width:240px;
+  margin-bottom:25px;
+}
+.hero h1{
+  font-size:40px;
   margin-bottom:15px;
 }
-
-header .tagline {
+.hero p{
+  max-width:700px;
+  margin:auto;
   font-size:16px;
-  color: var(--gold);
-  letter-spacing:2px;
+  color:#555;
+}
+.hero .buttons{
+  margin-top:30px;
+}
+.hero a{
+  text-decoration:none;
+  padding:15px 30px;
+  border-radius:8px;
+  margin:5px;
+  display:inline-block;
+  font-weight:600;
+}
+.primary{
+  background:linear-gradient(135deg,#caa74a,#f5d97c);
+  color:#111;
+}
+.secondary{
+  background:#fff;
+  border:1px solid #ddd;
+  color:#111;
 }
 
-/* Gallery Section */
-.gallery-container {
-  max-width:500px;
-  margin: 30px auto 10px;
+/* PRODUCT */
+.section{
+  padding:60px 20px;
+  max-width:1100px;
+  margin:auto;
+}
+.product{
   text-align:center;
 }
-
-.gallery {
-  overflow:hidden;
-  border-radius:12px;
-  border:2px solid rgba(199,161,74,0.2);
+.product h2{
+  font-size:32px;
+  margin-bottom:10px;
+}
+.price{
+  font-size:26px;
+  color:#f5d97c;
+  margin:15px 0;
 }
 
-.slides {
+/* IMAGE GALLERY */
+.gallery{
   display:flex;
-  transition: transform 0.5s ease-in-out;
+  gap:15px;
+  justify-content:center;
+  flex-wrap:wrap;
 }
-
-.slides img {
-  width:100%;
-  height:350px; /* reduced height for less stretch */
+.gallery img{
+  width:220px;
+  height:260px;
   object-fit:contain;
-  flex-shrink:0;
-}
-
-.dots { text-align:center; margin-top:10px; }
-.dot {
-  height:12px; width:12px; margin:0 5px; display:inline-block;
-  border-radius:50%; background: rgba(255,255,255,0.3); cursor:pointer;
-  transition:0.3s;
-}
-.dot.active { background-color: var(--gold); }
-
-/* Price and CTA */
-.price { 
-  font-size:28px; color:var(--gold); font-weight:bold; margin-top:15px;
-}
-
-.order a {
-  display:inline-block; margin-top:15px;
-  padding:16px 38px; border-radius:50px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-soft));
-  color:#000; font-weight:500;
-  box-shadow:0 10px 35px rgba(199,161,74,0.45);
-  text-decoration:none; font-size:16px;
-}
-
-/* Details */
-.details {
-  background: var(--dark-grey); padding:40px 24px; max-width:600px; margin:40px auto;
+  background:#111;
   border-radius:12px;
+  cursor:pointer;
 }
 
-.details h2 { color: var(--gold); font-family:'Playfair Display', serif; margin-bottom:20px; }
-.details ul { list-style:none; color: var(--text-muted); font-size:15px; }
-.details li { margin-bottom:10px; }
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  justify-content:center;
+  align-items:center;
+}
+.modal img{
+  max-width:90%;
+  max-height:90%;
+}
 
-/* Reviews */
-.reviews { padding:50px 24px; max-width:700px; margin:auto; }
-.reviews h2 { color:var(--gold); text-align:center; font-family:'Playfair Display', serif; margin-bottom:25px; }
-.review-box { background:#0f0f0f; padding:22px; border-radius:16px; margin-bottom:16px; border:1px solid rgba(199,161,74,0.15);}
-.review-box .stars { color:var(--gold); margin-bottom:8px; font-size:18px; }
-.review-box p { font-size:14px; color:var(--text-muted); }
-.review-box span { display:block; margin-top:10px; font-size:13px; color:var(--gold-soft); }
+/* REVIEWS */
+.reviews{
+  margin-top:60px;
+}
+.review{
+  background:#111;
+  padding:20px;
+  border-radius:10px;
+  margin-bottom:15px;
+}
+.stars{
+  color:#f5d97c;
+}
 
-/* Footer */
-footer { text-align:center; padding:24px; font-size:14px; color: rgba(255,255,255,0.6); border-top:1px solid rgba(199,161,74,0.2); }
+/* WHATSAPP */
+.whatsapp{
+  display:block;
+  width:max-content;
+  margin:40px auto 0;
+  background:#25d366;
+  color:#fff;
+  padding:15px 30px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:600;
+}
 
-/* Responsive */
-@media (max-width:600px) { .slides img { height:300px; } }
+/* FOOTER */
+footer{
+  background:#000;
+  padding:30px;
+  text-align:center;
+  font-size:14px;
+  color:#777;
+}
+
+@media(max-width:600px){
+  .hero h1{font-size:30px;}
+  .gallery img{width:160px;height:200px;}
+}
 </style>
 </head>
+
 <body>
 
-<header>
-  <img src="logo.png" alt="Kalonji Luxe Logo">
-  <div class="tagline">LUXURY TIMEPIECES</div>
-</header>
+<!-- HERO -->
+<section class="hero">
+  <img src="logo.png" alt="KALONJILUXE Logo">
+  <h1>Luxury Watches That Don't Break the Bank</h1>
+  <p>
+    Discover elegant, high-quality timepieces designed for everyday confidence.
+    Premium stainless steel, water-resistant, and built to last — without the luxury price tag.
+  </p>
+  <div class="buttons">
+    <a href="#product" class="primary">Explore Our Collection</a>
+    <a href="#about" class="secondary">Learn More</a>
+  </div>
+</section>
 
-<div class="gallery-container">
+<!-- PRODUCT -->
+<section id="product" class="section product">
+  <h2>Pablo Raez Stainless Steel Watch</h2>
+  <div class="price">R1,499</div>
+
   <div class="gallery">
-    <div class="slides">
-      <img src="watch.png" alt="Front view">
-      <img src="side.png" alt="Side view">
-      <img src="back.png" alt="Back view">
-      <img src="opp.png" alt="Opposite view">
+    <img src="watch.png" onclick="openModal(this.src)">
+    <img src="side.png" onclick="openModal(this.src)">
+    <img src="back.png" onclick="openModal(this.src)">
+    <img src="opp.png" onclick="openModal(this.src)">
+  </div>
+
+  <a class="whatsapp" href="https://wa.me/27632802346?text=Hi%20I%20want%20to%20order%20the%20Pablo%20Raez%20watch" target="_blank">
+    Order on WhatsApp
+  </a>
+
+  <!-- REVIEWS -->
+  <div class="reviews">
+    <h2>Customer Reviews</h2>
+
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      “The quality surprised me. Looks very expensive.”
+    </div>
+
+    <div class="review">
+      <div class="stars">★★★★☆</div>
+      “Clean design, comfortable and solid.”
+    </div>
+
+    <div class="review">
+      <div class="stars">★★★★</div>
+      “Great value for money. I get compliments.”
     </div>
   </div>
-  <div class="dots">
-    <span class="dot active"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-  </div>
+</section>
 
-  <!-- Price & Order -->
-  <div class="price">R 825</div>
-  <div class="order">
-    <a href="https://wa.me/27632802346?text=Hello%20I%20would%20like%20to%20order%20the%20Pablo%20Raez%20watch">Order on WhatsApp</a>
-  </div>
+<!-- MODAL -->
+<div class="modal" id="modal" onclick="this.style.display='none'">
+  <img id="modalImg">
 </div>
 
-<section class="details">
-  <h2>Specifications</h2>
-  <ul>
-    <li>• Stainless steel case & bracelet</li>
-    <li>• Water resistant</li>
-    <li>• Butterfly clasp</li>
-    <li>• Date display</li>
-    <li>• Everyday & formal wear</li>
-  </ul>
-</section>
-
-<section class="reviews">
-  <h2>Customer Reviews</h2>
-
-  <div class="review-box">
-    <div class="stars">★★★★☆</div>
-    <p>“Didn’t expect this level of quality. Feels solid and looks clean on the wrist.”</p>
-    <span>— Thabo M.</span>
-  </div>
-
-  <div class="review-box">
-    <div class="stars">★★★★★</div>
-    <p>“Simple, classy, and heavy enough to feel premium. I wear it daily.”</p>
-    <span>— Jason L.</span>
-  </div>
-
-  <div class="review-box">
-    <div class="stars">★★★★½</div>
-    <p>“The finish is neat. I get compliments almost every time I wear it.”</p>
-    <span>— Kabelo R.</span>
-  </div>
-</section>
-
+<!-- FOOTER -->
 <footer>
-  &copy; 2026 Kalonji Luxe. All rights reserved.
+  © 2026 KALONJILUXE — Everyday Luxury
 </footer>
 
 <script>
-const slides = document.querySelector('.slides');
-const images = slides.querySelectorAll('img');
-const dots = document.querySelectorAll('.dot');
-let currentIndex = 0;
-
-function showSlide(index){
-  if(index >= images.length) index=0;
-  if(index <0) index = images.length-1;
-  slides.style.transform = `translateX(-${index*100}%)`;
-  dots.forEach(dot=>dot.classList.remove('active'));
-  dots[index].classList.add('active');
-  currentIndex=index;
+function openModal(src){
+  document.getElementById("modal").style.display="flex";
+  document.getElementById("modalImg").src=src;
 }
-
-// Dots click
-dots.forEach((dot, idx)=>dot.addEventListener('click', ()=>showSlide(idx)));
-
-// Swipe
-let startX=0;
-slides.addEventListener('touchstart', e=>startX=e.touches[0].clientX);
-slides.addEventListener('touchend', e=>{
-  let endX=e.changedTouches[0].clientX;
-  if(startX-endX>40) showSlide(currentIndex+1);
-  if(endX-startX>40) showSlide(currentIndex-1);
-});
 </script>
 
 </body>
