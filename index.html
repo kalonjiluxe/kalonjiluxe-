@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>KALONJILUXE | Luxury Watches</title>
-
 <meta name="description" content="KALONJILUXE offers luxury stainless steel watches that are affordable, water-resistant and built to last.">
 
 <style>
@@ -22,31 +20,12 @@ body{
   color:#111;
   text-align:center;
   padding:70px 20px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
 }
 
-.logo-container{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:25px;
-}
-
-.logo-container img{
-  width:60px;
-  height:60px;
-  margin-right:15px;
-}
-
-.brand{
-  font-size:48px;
-  font-weight:800;
-  letter-spacing:2px;
-}
-.brand span{
-  color:#caa74a;
+.hero img.logo{
+  width:100px;
+  height:auto;
+  margin-bottom:20px;
 }
 
 .hero h1{
@@ -99,6 +78,7 @@ body{
 
 .product h2{
   font-size:32px;
+  margin-bottom:15px;
 }
 
 .price{
@@ -135,23 +115,35 @@ body{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.9);
+  background:rgba(0,0,0,0.95);
   justify-content:center;
   align-items:center;
   z-index:999;
+  touch-action: pan-y;
 }
 
 .modal img{
   max-width:90%;
   max-height:90%;
+  border-radius:12px;
+}
+
+.modal .close{
+  position:absolute;
+  top:20px;
+  right:30px;
+  color:#fff;
+  font-size:35px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
 /* WHATSAPP */
 .whatsapp{
   display:inline-block;
   margin-top:35px;
-  background:#25d366;
-  color:#fff;
+  background:#f5d97c; /* beige */
+  color:#111;
   padding:16px 34px;
   border-radius:50px;
   text-decoration:none;
@@ -204,8 +196,7 @@ footer{
 }
 
 @media(max-width:600px){
-  .logo-container img{width:45px;height:45px;margin-right:10px;}
-  .brand{font-size:36px;}
+  .hero img.logo{width:80px;}
   .hero h1{font-size:28px;}
   .gallery img{width:160px;height:200px;}
 }
@@ -216,11 +207,7 @@ footer{
 
 <!-- HERO -->
 <section class="hero">
-  <div class="logo-container">
-    <img src="kl_watch_logo.png" alt="KALONJILUXE Logo">
-    <div class="brand">KALONJI<span>LUXE</span></div>
-  </div>
-
+  <img src="kalonjiluxe_logo.png" class="logo" alt="KALONJILUXE Logo">
   <h1>Luxury Watches That Don't Break the Bank</h1>
   <p>
     Discover elegant, high-quality timepieces designed for everyday confidence.
@@ -234,74 +221,100 @@ footer{
 </section>
 
 <!-- PRODUCT -->
-<section id="product" class="section product">
-  <h2>Pablo Raez Stainless Steel Watch</h2>
-
-  <div class="price">
-    R 825 <span class="old-price">R 1 200</span>
-  </div>
-
+<section class="section product" id="product">
+  <h2>Pablo Raez Watch</h2>
+  <div class="price">R 825 <span class="old-price">R 1,200</span></div>
+  
   <div class="gallery">
-    <img src="watch.png" onclick="openModal(this.src)">
-    <img src="side.png" onclick="openModal(this.src)">
-    <img src="back.png" onclick="openModal(this.src)">
-    <img src="opp.png" onclick="openModal(this.src)">
+    <img src="watch.png" alt="Front view" class="product-img">
+    <img src="side.png" alt="Side view" class="product-img">
+    <img src="back.png" alt="Back view" class="product-img">
+    <img src="opp.png" alt="Other view" class="product-img">
   </div>
 
-  <a class="whatsapp"
-     href="https://wa.me/27632802346?text=Hi%20I%20want%20to%20order%20the%20Pablo%20Raez%20watch"
-     target="_blank">
-     Order on WhatsApp
-  </a>
+  <a href="https://wa.me/27632802346" class="whatsapp">Order on WhatsApp</a>
 
-  <!-- REVIEWS -->
   <div class="reviews">
-    <h2>Customer Reviews</h2>
-
-    <div class="review">
-      <div class="stars">★★★★★</div>
-      “Looks premium and feels solid. Worth every rand.”
-    </div>
-
-    <div class="review">
-      <div class="stars">★★★★</div>
-      “Very stylish. People think it’s way more expensive.”
-    </div>
-
     <div class="review">
       <div class="stars">★★★★☆</div>
-      “Clean design and comfortable for daily wear.”
+      <p>Great quality for the price!</p>
+    </div>
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p>Absolutely love this watch.</p>
+    </div>
+    <div class="review">
+      <div class="stars">★★★★½</div>
+      <p>Stylish and durable.</p>
     </div>
   </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="about">
-  <h2>About KALONJILUXE</h2>
-  <p>
-    KALONJILUXE is a modern luxury brand focused on delivering premium-looking
-    watches without the inflated prices. We believe confidence starts with
-    what you wear — and a great watch should be accessible, durable, and timeless.
-    Every KALONJILUXE timepiece is crafted with stainless steel, designed for everyday
-    wear, and tested for reliability.
-  </p>
 </section>
 
 <!-- MODAL -->
-<div class="modal" id="modal" onclick="this.style.display='none'">
-  <img id="modalImg">
+<div class="modal" id="modal">
+  <span class="close" id="close">&times;</span>
+  <img src="" id="modal-img">
 </div>
 
-<!-- FOOTER -->
+<!-- ABOUT -->
+<section class="about" id="about">
+  <h2>About KALONJILUXE</h2>
+  <p>
+    KALONJILUXE is a premium watch brand offering luxury stainless steel timepieces
+    at an affordable price. Our watches are designed to last, water-resistant, and
+    perfect for everyday elegance. We believe everyone deserves quality and style
+    without breaking the bank. Our mission is to provide confidence, style, and
+    durability in every watch we craft.
+  </p>
+</section>
+
 <footer>
-  © 2026 KALONJILUXE • WhatsApp: +27 63 280 2346
+  &copy; 2026 KALONJILUXE. All Rights Reserved.
 </footer>
 
 <script>
-function openModal(src){
-  document.getElementById("modal").style.display="flex";
-  document.getElementById("modalImg").src=src;
-}
+// Modal gallery
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modal-img');
+const close = document.getElementById('close');
+const images = document.querySelectorAll('.product-img');
+
+let currentIndex = 0;
+
+images.forEach((img, index) => {
+  img.addEventListener('click', () => {
+    currentIndex = index;
+    modalImg.src = img.src;
+    modal.style.display = 'flex';
+  });
+});
+
+close.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+// Mobile finger swipe
+let startX = 0;
+
+modalImg.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
+});
+
+modalImg.addEventListener('touchend', (e) => {
+  const endX = e.changedTouches[0].clientX;
+  const diff = startX - endX;
+  if(diff > 50){
+    currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+    modalImg.src = images[currentIndex].src;
+  } else if(diff < -50){
+    currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+    modalImg.src = images[currentIndex].src;
+  }
+});
+
+modal.addEventListener('click', (e) => {
+  if(e.target === modal) modal.style.display = 'none';
+});
 </script>
 
 </body>
