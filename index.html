@@ -6,16 +6,14 @@
 
 <title>KALONJILUXE | Luxury Watches</title>
 
-<meta name="description" content="KALONJILUXE luxury stainless steel watches. Water-resistant, durable, and affordable elegance.">
-
-<meta name="google-site-verification" content="0TkvMV_i_ke7zPgfPxjxu8RPIvcZ2pM5nJjy-6gtHCA" />
+<meta name="description" content="KALONJILUXE offers luxury stainless steel watches that are affordable, water-resistant and built to last.">
 
 <style>
 body{
   margin:0;
-  font-family:Poppins,Arial,sans-serif;
+  font-family: 'Poppins', Arial, sans-serif;
   background:#0b0b0b;
-  color:#fff;
+  color:#ffffff;
 }
 
 /* HERO */
@@ -23,69 +21,106 @@ body{
   background:#f6f4ef;
   color:#111;
   text-align:center;
-  padding:60px 20px;
+  padding:70px 20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
-.hero img{
-  width:240px;
+
+.logo-container{
+  display:flex;
+  align-items:center;
+  justify-content:center;
   margin-bottom:25px;
 }
+
+.logo-container img{
+  width:60px;
+  height:60px;
+  margin-right:15px;
+}
+
+.brand{
+  font-size:48px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+.brand span{
+  color:#caa74a;
+}
+
 .hero h1{
-  font-size:40px;
+  font-size:38px;
   margin-bottom:15px;
 }
+
 .hero p{
-  max-width:700px;
+  max-width:720px;
   margin:auto;
   font-size:16px;
   color:#555;
 }
-.hero .buttons{
-  margin-top:30px;
+
+.buttons{
+  margin-top:35px;
 }
+
 .hero a{
   text-decoration:none;
-  padding:15px 30px;
+  padding:15px 32px;
   border-radius:8px;
-  margin:5px;
+  margin:6px;
   display:inline-block;
   font-weight:600;
 }
+
 .primary{
   background:linear-gradient(135deg,#caa74a,#f5d97c);
   color:#111;
 }
+
 .secondary{
   background:#fff;
-  border:1px solid #ddd;
   color:#111;
+  border:1px solid #ddd;
 }
 
-/* PRODUCT */
+/* SECTION */
 .section{
   padding:60px 20px;
   max-width:1100px;
   margin:auto;
 }
+
+/* PRODUCT */
 .product{
   text-align:center;
 }
+
 .product h2{
   font-size:32px;
-  margin-bottom:10px;
-}
-.price{
-  font-size:26px;
-  color:#f5d97c;
-  margin:15px 0;
 }
 
-/* IMAGE GALLERY */
+.price{
+  margin:15px 0 30px;
+  font-size:26px;
+}
+
+.old-price{
+  text-decoration:line-through;
+  color:#888;
+  font-size:18px;
+  margin-left:10px;
+}
+
+/* GALLERY */
 .gallery{
   display:flex;
   gap:15px;
   justify-content:center;
   flex-wrap:wrap;
 }
+
 .gallery img{
   width:220px;
   height:260px;
@@ -99,56 +134,79 @@ body{
 .modal{
   display:none;
   position:fixed;
-  top:0;left:0;
-  width:100%;
-  height:100%;
+  inset:0;
   background:rgba(0,0,0,0.9);
   justify-content:center;
   align-items:center;
+  z-index:999;
 }
+
 .modal img{
   max-width:90%;
   max-height:90%;
 }
 
+/* WHATSAPP */
+.whatsapp{
+  display:inline-block;
+  margin-top:35px;
+  background:#25d366;
+  color:#fff;
+  padding:16px 34px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:600;
+}
+
 /* REVIEWS */
 .reviews{
-  margin-top:60px;
+  margin-top:70px;
 }
+
 .review{
   background:#111;
   padding:20px;
   border-radius:10px;
   margin-bottom:15px;
 }
+
 .stars{
   color:#f5d97c;
 }
 
-/* WHATSAPP */
-.whatsapp{
-  display:block;
-  width:max-content;
-  margin:40px auto 0;
-  background:#25d366;
-  color:#fff;
-  padding:15px 30px;
-  border-radius:50px;
-  text-decoration:none;
-  font-weight:600;
+/* ABOUT */
+.about{
+  background:#000;
+  padding:60px 20px;
+  text-align:center;
+}
+
+.about h2{
+  font-size:28px;
+  margin-bottom:20px;
+}
+
+.about p{
+  max-width:800px;
+  margin:auto;
+  color:#aaa;
+  font-size:15px;
+  line-height:1.7;
 }
 
 /* FOOTER */
 footer{
   background:#000;
-  padding:30px;
+  padding:25px;
   text-align:center;
   font-size:14px;
   color:#777;
 }
 
 @media(max-width:600px){
-  .hero h1{font-size:30px;}
+  .logo-container img{width:45px;height:45px;margin-right:10px;}
+  .brand{font-size:36px;}
+  .hero h1{font-size:28px;}
   .gallery img{width:160px;height:200px;}
 }
 </style>
@@ -158,12 +216,17 @@ footer{
 
 <!-- HERO -->
 <section class="hero">
-  <img src="logo.png" alt="KALONJILUXE Logo">
+  <div class="logo-container">
+    <img src="kl_watch_logo.png" alt="KALONJILUXE Logo">
+    <div class="brand">KALONJI<span>LUXE</span></div>
+  </div>
+
   <h1>Luxury Watches That Don't Break the Bank</h1>
   <p>
     Discover elegant, high-quality timepieces designed for everyday confidence.
     Premium stainless steel, water-resistant, and built to last — without the luxury price tag.
   </p>
+
   <div class="buttons">
     <a href="#product" class="primary">Explore Our Collection</a>
     <a href="#about" class="secondary">Learn More</a>
@@ -173,7 +236,10 @@ footer{
 <!-- PRODUCT -->
 <section id="product" class="section product">
   <h2>Pablo Raez Stainless Steel Watch</h2>
-  <div class="price">R1,499</div>
+
+  <div class="price">
+    R 825 <span class="old-price">R 1 200</span>
+  </div>
 
   <div class="gallery">
     <img src="watch.png" onclick="openModal(this.src)">
@@ -182,8 +248,10 @@ footer{
     <img src="opp.png" onclick="openModal(this.src)">
   </div>
 
-  <a class="whatsapp" href="https://wa.me/27632802346?text=Hi%20I%20want%20to%20order%20the%20Pablo%20Raez%20watch" target="_blank">
-    Order on WhatsApp
+  <a class="whatsapp"
+     href="https://wa.me/27632802346?text=Hi%20I%20want%20to%20order%20the%20Pablo%20Raez%20watch"
+     target="_blank">
+     Order on WhatsApp
   </a>
 
   <!-- REVIEWS -->
@@ -192,19 +260,31 @@ footer{
 
     <div class="review">
       <div class="stars">★★★★★</div>
-      “The quality surprised me. Looks very expensive.”
+      “Looks premium and feels solid. Worth every rand.”
+    </div>
+
+    <div class="review">
+      <div class="stars">★★★★½</div>
+      “Very stylish. People think it’s way more expensive.”
     </div>
 
     <div class="review">
       <div class="stars">★★★★☆</div>
-      “Clean design, comfortable and solid.”
-    </div>
-
-    <div class="review">
-      <div class="stars">★★★★</div>
-      “Great value for money. I get compliments.”
+      “Clean design and comfortable for daily wear.”
     </div>
   </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <h2>About KALONJILUXE</h2>
+  <p>
+    KALONJILUXE is a modern luxury brand focused on delivering premium-looking
+    watches without the inflated prices. We believe confidence starts with
+    what you wear — and a great watch should be accessible, durable, and timeless.
+    Every KALONJILUXE timepiece is crafted with stainless steel, designed for everyday
+    wear, and tested for reliability.
+  </p>
 </section>
 
 <!-- MODAL -->
@@ -214,7 +294,7 @@ footer{
 
 <!-- FOOTER -->
 <footer>
-  © 2026 KALONJILUXE — Everyday Luxury
+  © 2026 KALONJILUXE • WhatsApp: +27 63 280 2346
 </footer>
 
 <script>
@@ -225,4 +305,4 @@ function openModal(src){
 </script>
 
 </body>
-</html>
+  </html>
