@@ -11,19 +11,17 @@ body{
   margin:0;
   font-family: 'Poppins', Arial, sans-serif;
   background:#0b0b0b;
-  color:#ffffff;
+  color:#fff;
 }
 
 /* HERO */
 .hero{
-  background:#f6f4ef;
-  color:#111;
   text-align:center;
   padding:70px 20px;
 }
 
 .hero img.logo{
-  width:100px;
+  width:140px;
   height:auto;
   margin-bottom:20px;
 }
@@ -31,15 +29,17 @@ body{
 .hero h1{
   font-size:38px;
   margin-bottom:15px;
+  color:#f5d97c;
 }
 
 .hero p{
   max-width:720px;
   margin:auto;
   font-size:16px;
-  color:#555;
+  color:#ccc;
 }
 
+/* BUTTONS */
 .buttons{
   margin-top:35px;
 }
@@ -79,10 +79,11 @@ body{
 .product h2{
   font-size:32px;
   margin-bottom:15px;
+  color:#f5d97c;
 }
 
 .price{
-  margin:15px 0 30px;
+  margin:15px 0 20px;
   font-size:26px;
 }
 
@@ -141,7 +142,7 @@ body{
 /* WHATSAPP */
 .whatsapp{
   display:inline-block;
-  margin-top:35px;
+  margin-top:25px;
   background:#f5d97c; /* beige */
   color:#111;
   padding:16px 34px;
@@ -152,23 +153,72 @@ body{
 
 /* REVIEWS */
 .reviews{
-  margin-top:70px;
+  margin-top:50px;
 }
 
 .review{
   background:#111;
-  padding:20px;
+  padding:15px 20px;
   border-radius:10px;
   margin-bottom:15px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
 }
 
-.stars{
+.review .name{
+  font-weight:bold;
   color:#f5d97c;
+  margin-bottom:5px;
 }
 
-/* ABOUT */
+.review .rating{
+  font-weight:bold;
+  color:#f5d97c;
+  margin-bottom:5px;
+}
+
+/* REVIEW FORM */
+.review-form{
+  background:#111;
+  padding:20px;
+  border-radius:12px;
+  margin-top:30px;
+  text-align:left;
+}
+
+.review-form input, .review-form textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border-radius:8px;
+  border:none;
+  font-size:14px;
+}
+
+.review-form label{
+  font-weight:bold;
+  margin-bottom:5px;
+  display:block;
+}
+
+.review-form button{
+  background:#f5d97c;
+  color:#111;
+  border:none;
+  padding:12px 25px;
+  border-radius:50px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.review-form input[type="file"]{
+  padding:5px;
+}
+
+/* ABOUT / LEARN MORE */
 .about{
-  background:#000;
+  background:linear-gradient(to right, #111, #1c1c1c);
   padding:60px 20px;
   text-align:center;
 }
@@ -176,12 +226,13 @@ body{
 .about h2{
   font-size:28px;
   margin-bottom:20px;
+  color:#f5d97c;
 }
 
 .about p{
   max-width:800px;
   margin:auto;
-  color:#aaa;
+  color:#ccc;
   font-size:15px;
   line-height:1.7;
 }
@@ -196,7 +247,7 @@ footer{
 }
 
 @media(max-width:600px){
-  .hero img.logo{width:80px;}
+  .hero img.logo{width:100px;}
   .hero h1{font-size:28px;}
   .gallery img{width:160px;height:200px;}
 }
@@ -206,22 +257,18 @@ footer{
 <body>
 
 <!-- HERO -->
-<section class="hero">
-  <img src="kalonjiluxe_logo.png" class="logo" alt="KALONJILUXE Logo">
-  <h1>Luxury Watches That Don't Break the Bank</h1>
-  <p>
-    Discover elegant, high-quality timepieces designed for everyday confidence.
-    Premium stainless steel, water-resistant, and built to last — without the luxury price tag.
-  </p>
+<section class="hero" id="hero">
+  <img src="logo.png" class="logo" alt="KALONJILUXE Logo">
+  <h1>KALONJILUXE Luxury Watches</h1>
+  <p>Premium stainless steel watches, water-resistant, crafted for style and durability.</p>
 
   <div class="buttons">
-    <a href="#product" class="primary">Explore Our Collection</a>
-    <a href="#about" class="secondary">Learn More</a>
+    <a href="#learn-more" class="secondary">Learn More</a>
   </div>
 </section>
 
 <!-- PRODUCT -->
-<section class="section product" id="product">
+<section class="section product">
   <h2>Pablo Raez Watch</h2>
   <div class="price">R 825 <span class="old-price">R 1,200</span></div>
   
@@ -236,17 +283,37 @@ footer{
 
   <div class="reviews">
     <div class="review">
-      <div class="stars">★★★★☆</div>
-      <p>Great quality for the price!</p>
+      <div class="name">Amanda S.</div>
+      <div class="rating">4.6 ★</div>
+      <p>Loved the watch! Perfect fit for my style.</p>
     </div>
     <div class="review">
-      <div class="stars">★★★★★</div>
-      <p>Absolutely love this watch.</p>
+      <div class="name">Jonathan K.</div>
+      <div class="rating">4.9 ★</div>
+      <p>High quality and luxury feel. Worth every rand.</p>
     </div>
     <div class="review">
-      <div class="stars">★★★★½</div>
-      <p>Stylish and durable.</p>
+      <div class="name">Tina L.</div>
+      <div class="rating">4.8 ★</div>
+      <p>Stylish and water-resistant, exactly what I wanted.</p>
     </div>
+  </div>
+
+  <div class="review-form">
+    <h3>Add Your Review</h3>
+    <label for="name">Name</label>
+    <input type="text" id="name" placeholder="Your name">
+
+    <label for="rating">Rating (1-5)</label>
+    <input type="number" id="rating" placeholder="4.5" min="1" max="5">
+
+    <label for="review">Review</label>
+    <textarea id="review" placeholder="Write your review here..."></textarea>
+
+    <label for="photo">Upload Photo</label>
+    <input type="file" id="photo">
+
+    <button onclick="submitReview()">Submit Review</button>
   </div>
 </section>
 
@@ -256,16 +323,33 @@ footer{
   <img src="" id="modal-img">
 </div>
 
-<!-- ABOUT -->
-<section class="about" id="about">
-  <h2>About KALONJILUXE</h2>
+<!-- LEARN MORE -->
+<section id="learn-more" class="about">
+  <h2>Discover the World of KALONJILUXE</h2>
   <p>
-    KALONJILUXE is a premium watch brand offering luxury stainless steel timepieces
-    at an affordable price. Our watches are designed to last, water-resistant, and
-    perfect for everyday elegance. We believe everyone deserves quality and style
-    without breaking the bank. Our mission is to provide confidence, style, and
-    durability in every watch we craft.
+    At KALONJILUXE, we believe that a watch is more than just a timepiece—it's a statement. 
+    Each Pablo Raez watch is meticulously designed with <strong>premium stainless steel</strong>, 
+    ensuring durability and a water-resistant build so you can wear it with confidence anywhere.  
   </p>
+  <p>
+    From the moment you put it on, you feel the elegance, the weight of quality, 
+    and the subtle shine that catches the eye. This is a watch crafted for 
+    people who value style, precision, and timeless luxury—without paying a fortune.
+  </p>
+  <p>
+    Our story started with a simple mission: to bring high-end watches to everyone who 
+    desires sophistication and quality. Every curve, every finish, every golden accent is intentional, 
+    so you don’t just wear a watch—you wear <strong>confidence and class</strong>.
+  </p>
+  <p>
+    Looking ahead, KALONJILUXE is committed to creating a world where luxury is accessible. 
+    Our future collections will continue to blend innovation, timeless style, and uncompromising 
+    quality. Join us in this journey, and let your watch do the talking.
+  </p>
+  <div style="margin-top:30px;">
+    <a href="https://wa.me/27632802346" class="whatsapp">Order Yours Now</a>
+    <a href="#hero" class="secondary" style="margin-left:15px;">Back to Top</a>
+  </div>
 </section>
 
 <footer>
@@ -281,40 +365,50 @@ const images = document.querySelectorAll('.product-img');
 
 let currentIndex = 0;
 
-images.forEach((img, index) => {
-  img.addEventListener('click', () => {
-    currentIndex = index;
-    modalImg.src = img.src;
-    modal.style.display = 'flex';
+images.forEach((img,index)=>{
+  img.addEventListener('click',()=>{
+    currentIndex=index;
+    modalImg.src=img.src;
+    modal.style.display='flex';
   });
 });
 
-close.addEventListener('click', () => {
-  modal.style.display = 'none';
-});
+close.addEventListener('click',()=>{ modal.style.display='none'; });
 
-// Mobile finger swipe
+// Mobile swipe
 let startX = 0;
-
-modalImg.addEventListener('touchstart', (e) => {
-  startX = e.touches[0].clientX;
+modalImg.addEventListener('touchstart',(e)=>{ startX=e.touches[0].clientX; });
+modalImg.addEventListener('touchend',(e)=>{
+  const endX=e.changedTouches[0].clientX;
+  const diff=startX-endX;
+  if(diff>50){ currentIndex=(currentIndex===images.length-1)?0:currentIndex+1; modalImg.src=images[currentIndex].src;}
+  else if(diff<-50){ currentIndex=(currentIndex===0)?images.length-1:currentIndex-1; modalImg.src=images[currentIndex].src;}
 });
 
-modalImg.addEventListener('touchend', (e) => {
-  const endX = e.changedTouches[0].clientX;
-  const diff = startX - endX;
-  if(diff > 50){
-    currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
-    modalImg.src = images[currentIndex].src;
-  } else if(diff < -50){
-    currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
-    modalImg.src = images[currentIndex].src;
-  }
-});
+modal.addEventListener('click',(e)=>{ if(e.target===modal) modal.style.display='none'; });
 
-modal.addEventListener('click', (e) => {
-  if(e.target === modal) modal.style.display = 'none';
-});
+// Review submission (front-end only)
+function submitReview(){
+  const name=document.getElementById('name').value;
+  const rating=document.getElementById('rating').value;
+  const reviewText=document.getElementById('review').value;
+  if(name && rating && reviewText){
+    const reviewsDiv=document.querySelector('.reviews');
+    const newReview=document.createElement('div');
+    newReview.classList.add('review');
+    newReview.innerHTML=`
+      <div class="name">${name}</div>
+      <div class="rating">${parseFloat(rating)} ★</div>
+      <p>${reviewText}</p>
+    `;
+    reviewsDiv.appendChild(newReview);
+    alert('Thank you! Your review has been added.');
+    document.getElementById('name').value='';
+    document.getElementById('rating').value='';
+    document.getElementById('review').value='';
+    document.getElementById('photo').value='';
+  } else { alert('Please fill all fields before submitting.'); }
+}
 </script>
 
 </body>
