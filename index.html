@@ -7,36 +7,38 @@
 <meta name="description" content="KALONJILUXE offers luxury stainless steel watches that are affordable, water-resistant and built to last.">
 
 <style>
+/* BODY & BACKGROUND */
 body{
   margin:0;
   font-family: 'Poppins', Arial, sans-serif;
-  background:#0b0b0b;
+  background: linear-gradient(135deg, #1b1b1b, #3a2b0f, #0b0b0b, #2c1e0c);
+  background-size: 400% 400%;
   color:#fff;
 }
 
 /* HERO */
 .hero{
   text-align:center;
-  padding:70px 20px;
+  padding:90px 20px;
 }
 
 .hero img.logo{
-  width:140px;
+  width:200px;
   height:auto;
-  margin-bottom:20px;
+  margin-bottom:25px;
 }
 
 .hero h1{
-  font-size:38px;
-  margin-bottom:15px;
+  font-size:46px;
+  margin-bottom:20px;
   color:#f5d97c;
 }
 
 .hero p{
   max-width:720px;
   margin:auto;
-  font-size:16px;
-  color:#ccc;
+  font-size:17px;
+  color:#e0d7b1;
 }
 
 /* BUTTONS */
@@ -46,7 +48,7 @@ body{
 
 .hero a{
   text-decoration:none;
-  padding:15px 32px;
+  padding:16px 36px;
   border-radius:8px;
   margin:6px;
   display:inline-block;
@@ -77,19 +79,19 @@ body{
 }
 
 .product h2{
-  font-size:32px;
+  font-size:36px;
   margin-bottom:15px;
   color:#f5d97c;
 }
 
 .price{
   margin:15px 0 20px;
-  font-size:26px;
+  font-size:28px;
 }
 
 .old-price{
   text-decoration:line-through;
-  color:#888;
+  color:#ccc;
   font-size:18px;
   margin-left:10px;
 }
@@ -103,12 +105,17 @@ body{
 }
 
 .gallery img{
-  width:220px;
-  height:260px;
+  width:200px;
+  height:240px;
   object-fit:contain;
   background:#111;
   border-radius:12px;
   cursor:pointer;
+  transition: transform 0.2s;
+}
+
+.gallery img:hover{
+  transform: scale(1.05);
 }
 
 /* MODAL */
@@ -143,12 +150,17 @@ body{
 .whatsapp{
   display:inline-block;
   margin-top:25px;
-  background:#f5d97c; /* beige */
+  background:#d6c29b; /* soft beige */
   color:#111;
   padding:16px 34px;
   border-radius:50px;
   text-decoration:none;
   font-weight:600;
+  transition: 0.2s;
+}
+
+.whatsapp:hover{
+  background:#f5d97c;
 }
 
 /* REVIEWS */
@@ -157,7 +169,7 @@ body{
 }
 
 .review{
-  background:#111;
+  background:rgba(0,0,0,0.6);
   padding:15px 20px;
   border-radius:10px;
   margin-bottom:15px;
@@ -180,7 +192,7 @@ body{
 
 /* REVIEW FORM */
 .review-form{
-  background:#111;
+  background:rgba(0,0,0,0.6);
   padding:20px;
   border-radius:12px;
   margin-top:30px;
@@ -212,19 +224,15 @@ body{
   cursor:pointer;
 }
 
-.review-form input[type="file"]{
-  padding:5px;
-}
-
 /* ABOUT / LEARN MORE */
 .about{
-  background:linear-gradient(to right, #111, #1c1c1c);
+  background:linear-gradient(to right, #1c1c1c, #3c2b0f, #111);
   padding:60px 20px;
   text-align:center;
 }
 
 .about h2{
-  font-size:28px;
+  font-size:30px;
   margin-bottom:20px;
   color:#f5d97c;
 }
@@ -232,8 +240,8 @@ body{
 .about p{
   max-width:800px;
   margin:auto;
-  color:#ccc;
-  font-size:15px;
+  color:#e0d7b1;
+  font-size:16px;
   line-height:1.7;
 }
 
@@ -247,8 +255,8 @@ footer{
 }
 
 @media(max-width:600px){
-  .hero img.logo{width:100px;}
-  .hero h1{font-size:28px;}
+  .hero img.logo{width:140px;}
+  .hero h1{font-size:32px;}
   .gallery img{width:160px;height:200px;}
 }
 </style>
