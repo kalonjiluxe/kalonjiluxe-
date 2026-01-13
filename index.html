@@ -1,226 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LUXORIN Luxury Watches</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUXORIN | Luxury Watches</title>
+<meta name="description" content="LUXORIN offers luxury stainless steel watches that are affordable, water-resistant and built to last.">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: linear-gradient(135deg, #f5f2ea, #e7dcc8, #f8f6f1);
-      color: #1e1e1e;
-    }
+<style>
+body{
+  margin:0;
+  font-family: 'Poppins', Arial, sans-serif;
+  background: linear-gradient(135deg, #1b1b1b, #3a2b0f, #0b0b0b, #2c1e0c);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+  color:#fff;
+}
 
-    header {
-      padding: 30px 20px;
-      text-align: center;
-    }
+@keyframes gradientMove {
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
 
-    header img {
-      width: 180px; /* BIGGER logo */
-      max-width: 80%;
-    }
+/* HERO */
+.hero{
+  text-align:center;
+  padding:70px 20px 40px;
+}
 
-    h1 {
-      margin-top: 15px;
-      font-size: 28px;
-      letter-spacing: 1px;
-    }
+.hero img.logo{
+  width:420px;
+  margin-bottom:25px;
+}
 
-    .hero {
-      text-align: center;
-      padding: 20px;
-    }
+.hero h1{
+  font-size:26px;
+  color:#f5d97c;
+  margin-bottom:10px;
+}
 
-    .hero h2 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
+.hero p{
+  max-width:720px;
+  margin:auto;
+  font-size:18px;
+  color:#e0d7b1;
+}
 
-    .hero p {
-      max-width: 600px;
-      margin: 0 auto 20px;
-      line-height: 1.6;
-      color: #444;
-    }
+/* BUTTONS */
+.buttons{
+  margin-top:20px;
+}
 
-    .price {
-      font-size: 26px;
-      margin: 15px 0;
-    }
+.secondary{
+  background:#fff;
+  color:#111;
+  padding:16px 36px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:600;
+}
 
-    .price del {
-      color: #888;
-      margin-left: 10px;
-    }
+/* PRODUCT */
+.section{
+  padding:60px 20px;
+  max-width:1100px;
+  margin:auto;
+  text-align:center;
+}
 
-    .btn {
-      display: inline-block;
-      padding: 14px 28px;
-      margin: 10px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+.product h2{
+  font-size:38px;
+  color:#f5d97c;
+}
 
-    .btn-primary {
-      background: #111;
-      color: #fff;
-    }
+.price{
+  font-size:30px;
+  margin:15px 0;
+}
 
-    .btn-whatsapp {
-      background: #e7dcc8; /* beige */
-      color: #111;
-      border: 1px solid #cbbfa9;
-    }
+.old-price{
+  text-decoration:line-through;
+  font-size:18px;
+  color:#ccc;
+  margin-left:10px;
+}
 
-    /* Swipe gallery */
-    .gallery {
-      display: flex;
-      overflow-x: auto;
-      gap: 15px;
-      padding: 20px;
-      scroll-snap-type: x mandatory;
-    }
+/* GALLERY */
+.gallery{
+  display:flex;
+  gap:15px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
 
-    .gallery img {
-      height: 260px;
-      border-radius: 20px;
-      scroll-snap-align: center;
-    }
+.gallery img{
+  width:220px;
+  height:260px;
+  object-fit:contain;
+  background:#111;
+  border-radius:12px;
+  cursor:pointer;
+  transition:transform .2s;
+}
 
-    .section {
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
+.gallery img:hover{
+  transform:scale(1.05);
+}
 
-    .section h3 {
-      text-align: center;
-      font-size: 26px;
-      margin-bottom: 15px;
-    }
+/* WHATSAPP */
+.whatsapp{
+  display:inline-block;
+  margin-top:25px;
+  background:#d6c29b;
+  color:#111;
+  padding:16px 34px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:600;
+}
 
-    .ratings {
-      text-align: center;
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
+.whatsapp:hover{
+  background:#f5d97c;
+}
 
-    .review-box {
-      background: #fff;
-      border-radius: 15px;
-      padding: 20px;
-      margin-bottom: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
+/* REVIEWS */
+.reviews{
+  margin-top:50px;
+  text-align:left;
+}
 
-    footer {
-      background: #111;
-      color: #eee;
-      padding: 30px 20px;
-      text-align: center;
-    }
+.review{
+  background:rgba(0,0,0,0.6);
+  padding:15px 20px;
+  border-radius:10px;
+  margin-bottom:15px;
+}
 
-    footer p {
-      max-width: 700px;
-      margin: auto;
-      line-height: 1.6;
-      font-size: 14px;
-    }
+.review .name{
+  font-weight:bold;
+  color:#f5d97c;
+}
 
-    input, textarea {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-    }
+.review .rating{
+  font-weight:bold;
+  color:#f5d97c;
+}
 
-    input[type="file"] {
-      border: none;
-    }
-  </style>
+/* REVIEW FORM */
+.review-form{
+  background:rgba(0,0,0,0.6);
+  padding:20px;
+  border-radius:12px;
+  margin-top:30px;
+}
+
+.review-form input,
+.review-form textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border-radius:8px;
+  border:none;
+}
+
+.review-form button{
+  background:#f5d97c;
+  color:#111;
+  padding:12px 25px;
+  border:none;
+  border-radius:50px;
+  font-weight:600;
+}
+
+/* LEARN MORE */
+.about{
+  background:linear-gradient(to right,#1c1c1c,#3c2b0f,#111);
+  padding:60px 20px;
+  text-align:center;
+}
+
+.about h2{
+  color:#f5d97c;
+  font-size:30px;
+}
+
+.about p{
+  max-width:800px;
+  margin:15px auto;
+  line-height:1.7;
+  color:#e0d7b1;
+}
+
+/* FOOTER */
+footer{
+  background:#000;
+  padding:25px;
+  text-align:center;
+  color:#777;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <img src="logo2.png" alt="LUXORIN Logo">
-    <h1>LUXORIN Luxury Watches</h1>
-  </header>
+<!-- HERO -->
+<section class="hero">
+  <img src="logo2.png" class="logo" alt="LUXORIN Logo">
+  <h1>LUXORIN Luxury Watches</h1>
+  <p>Designed to turn heads. Built to last. This is luxury, redefined.</p>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h2>Luxury Watches That Don’t Break the Bank</h2>
-    <p>
-      Crafted for everyday confidence, LUXORIN watches blend clean design,
-      durable materials, and timeless style — without the luxury price tag.
-    </p>
+  <div class="buttons">
+    <a href="#learn-more" class="secondary">Learn More</a>
+  </div>
+</section>
 
-    <div class="price">
-      R 825 <del>R 1 200</del>
-    </div>
+<!-- PRODUCT -->
+<section class="section product">
+  <h2>Pablo Raez Watch</h2>
+  <div class="price">R 825 <span class="old-price">R 1,200</span></div>
 
-    <a href="https://wa.me/27632802346" class="btn btn-whatsapp">Order on WhatsApp</a>
-    <a href="#learn-more" class="btn btn-primary">Learn More</a>
-  </section>
-
-  <!-- GALLERY -->
   <div class="gallery">
-    <img src="watch.png" alt="Watch front">
-    <img src="side.png" alt="Watch side">
-    <img src="back.png" alt="Watch back">
-    <img src="opp.png" alt="Watch on wrist">
+    <img src="watch.png">
+    <img src="side.png">
+    <img src="back.png">
+    <img src="opp.png">
   </div>
 
-  <!-- LEARN MORE -->
-  <section id="learn-more" class="section">
-    <h3>More Than Just a Watch</h3>
-    <p>
-      LUXORIN was built for people who want to look sharp without trying too hard.
-      This watch is stainless steel, water-resistant, and made to move with you —
-      from school, to work, to nights out.
-      <br><br>
-      Our goal is simple: make premium-looking watches accessible, reliable,
-      and something you’re proud to wear every single day.
-    </p>
-  </section>
+  <a href="https://wa.me/27632802346" class="whatsapp">Order on WhatsApp</a>
 
-  <!-- REVIEWS -->
-  <section class="section">
-    <h3>Customer Reviews</h3>
-    <div class="ratings">4.6 ★ &nbsp;&nbsp; 4.9 ★</div>
-
-    <div class="review-box">
-      <strong>Jason M.</strong>
-      <p>Didn’t expect this quality for the price. Feels solid and looks clean.</p>
+  <div class="reviews">
+    <div class="review">
+      <div class="name">Amanda S.</div>
+      <div class="rating">4.6 ★</div>
+      <p>Luxury feel, perfect fit.</p>
     </div>
-
-    <div class="review-box">
-      <strong>Thabo L.</strong>
-      <p>I’ve gotten compliments already. Definitely worth it.</p>
+    <div class="review">
+      <div class="name">Jonathan K.</div>
+      <div class="rating">4.9 ★</div>
+      <p>Feels premium. Looks expensive.</p>
     </div>
+  </div>
 
-    <h4>Leave a Review</h4>
+  <div class="review-form">
+    <h3>Add Your Review</h3>
     <input type="text" placeholder="Your name">
-    <textarea rows="4" placeholder="Your review"></textarea>
-    <input type="file" accept="image/*">
-  </section>
+    <input type="number" placeholder="Rating (1–5)">
+    <textarea placeholder="Your review"></textarea>
+    <input type="file">
+    <button>Submit Review</button>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>
-      LUXORIN is a growing luxury-inspired watch brand focused on quality,
-      affordability, and confidence. We’re building a future where style
-      doesn’t come with pressure — just presence.
-      <br><br>
-      Contact us on WhatsApp: +27 63 280 2346
-    </p>
-  </footer>
+<!-- LEARN MORE -->
+<section id="learn-more" class="about">
+  <h2>About LUXORIN</h2>
+  <p>
+    LUXORIN was created for those who demand elegance without compromise.
+    Every watch is crafted from premium stainless steel, designed to be worn
+    confidently in every moment of life.
+  </p>
+  <p>
+    Our mission is simple: make luxury accessible, timeless, and powerful.
+    LUXORIN isn’t just a watch — it’s a statement.
+  </p>
+  <a href="https://wa.me/27632802346" class="whatsapp">Own the Moment</a>
+</section>
+
+<footer>
+  © 2026 LUXORIN. All Rights Reserved.
+</footer>
 
 </body>
-        </html>
+  </html>
