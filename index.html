@@ -3,264 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LUXORIN | Luxury Watches</title>
-<meta name="description" content="LUXORIN offers luxury stainless steel watches that are affordable, water-resistant and built to last.">
+<title>Luxorin | Luxury Watches</title>
+<meta name="description" content="Luxorin offers premium luxury watches with style, durability, and elegance.">
+
+<!-- Firebase -->
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCglSrG-DoIaA-mJOG3ek6Uo9-DGkvR3TE",
+    authDomain: "luxorin-reviews.firebaseapp.com",
+    projectId: "luxorin-reviews",
+    storageBucket: "luxorin-reviews.firebasestorage.app",
+    messagingSenderId: "435983248839",
+    appId: "1:435983248839:web:0b9928de0ed348232fbde2"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  window.submitReview = async function(){
+    const name = document.getElementById('name').value;
+    const rating = document.getElementById('rating').value;
+    const text = document.getElementById('review').value;
+    if(!name || !rating || !text){ alert('Please fill all fields'); return; }
+
+    // Optional: photo handling could be added here
+    try {
+      await addDoc(collection(db,"reviews"),{
+        name, rating: parseFloat(rating), text, created: serverTimestamp()
+      });
+      alert('Thank you! Your review has been submitted.');
+      document.getElementById('name').value='';
+      document.getElementById('rating').value='';
+      document.getElementById('review').value='';
+      document.getElementById('photo').value='';
+    } catch(e){ console.error(e); alert('Error submitting review.'); }
+  };
+
+  window.addEventListener('DOMContentLoaded',()=>{
+    const reviewsDiv = document.getElementById('reviews');
+    const q = query(collection(db,"reviews"), orderBy("created","desc"));
+    onSnapshot(q, snapshot=>{
+      reviewsDiv.innerHTML='';
+      snapshot.forEach(doc=>{
+        const r = doc.data();
+        let photosHTML = "";
+        if(r.photoURL){
+          photosHTML = `<div class="photos"><img src="${r.photoURL}" onclick="window.open('${r.photoURL}','_blank')"></div>`;
+        }
+        reviewsDiv.innerHTML += `<div class="review">
+          <div class="name">${r.name}</div>
+          <div class="rating">${r.rating} ★</div>
+          <div class="text">${r.text}</div>
+          ${photosHTML}
+        </div>`;
+      });
+    });
+  });
+</script>
 
 <style>
-/* BODY & BACKGROUND */
 body{
   margin:0;
   font-family: 'Poppins', Arial, sans-serif;
-  background: linear-gradient(135deg, #1b1b1b, #3a2b0f, #0b0b0b, #2c1e0c);
-  background-size: 400% 400%;
-  animation: gradientMove 15s ease infinite;
+  background: linear-gradient(135deg,#1b1b1b,#3a2b0f,#0b0b0b,#2c1e0c);
+  background-size:400% 400%;
+  animation:gradientMove 15s ease infinite;
   color:#fff;
 }
 
-@keyframes gradientMove {
+@keyframes gradientMove{
   0%{background-position:0% 50%;}
   50%{background-position:100% 50%;}
   100%{background-position:0% 50%;}
 }
 
-/* HERO */
-.hero{
-  text-align:center;
-  padding:70px 20px 40px 20px;
-}
+.hero{text-align:center;padding:70px 20px 40px;}
+.hero img.logo{width:450px;height:auto;margin-bottom:25px;}
+.hero h1{font-size:28px;color:#f5d97c;margin-bottom:10px;}
+.hero p{max-width:720px;margin:auto;font-size:18px;color:#e0d7b1;font-weight:500;}
+.buttons{margin-top:20px;}
+.hero a{text-decoration:none;padding:16px 36px;border-radius:8px;margin:6px;display:inline-block;font-weight:600;}
+.primary{background:linear-gradient(135deg,#caa74a,#f5d97c);color:#111;}
+.secondary{background:#fff;color:#111;border:1px solid #ddd;}
 
-.hero img.logo{
-  width:400px; /* BIG logo */
-  height:auto;
-  margin-bottom:25px;
-}
-
-.hero h1{
-  font-size:28px; /* smaller heading */
-  margin-bottom:10px;
-  color:#f5d97c;
-}
-
-.hero p{
-  max-width:720px;
-  margin:auto;
-  font-size:18px;
-  color:#e0d7b1;
-  font-weight:500;
-}
-
-/* BUTTONS */
-.buttons{
-  margin-top:20px;
-}
-
-.hero a{
-  text-decoration:none;
-  padding:16px 36px;
-  border-radius:8px;
-  margin:6px;
-  display:inline-block;
-  font-weight:600;
-}
-
-.primary{
-  background:linear-gradient(135deg,#caa74a,#f5d97c);
-  color:#111;
-}
-
-.secondary{
-  background:#fff;
-  color:#111;
-  border:1px solid #ddd;
-}
-
-/* SECTION */
-.section{
-  padding:60px 20px;
-  max-width:1100px;
-  margin:auto;
-}
-
-/* PRODUCT */
-.product{
-  text-align:center;
-}
-
-.product h2{
-  font-size:38px; /* slightly bigger */
-  margin-bottom:15px;
-  color:#f5d97c;
-}
-
-.price{
-  margin:15px 0 20px;
-  font-size:30px; /* slightly bigger */
-}
-
-.old-price{
-  text-decoration:line-through;
-  color:#ccc;
-  font-size:18px;
-  margin-left:10px;
-}
-
-/* GALLERY */
-.gallery{
-  display:flex;
-  gap:15px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-
-.gallery img{
-  width:220px; /* bigger images */
-  height:260px;
-  object-fit:contain;
-  background:#111;
-  border-radius:12px;
-  cursor:pointer;
-  transition: transform 0.2s;
-}
-
-.gallery img:hover{
-  transform: scale(1.05);
-}
+.section{padding:60px 20px;max-width:1100px;margin:auto;}
+.product{text-align:center;}
+.product h2{font-size:38px;margin-bottom:15px;color:#f5d97c;}
+.price{margin:15px 0 20px;font-size:30px;}
+.old-price{text-decoration:line-through;color:#ccc;font-size:18px;margin-left:10px;}
+.gallery{display:flex;gap:15px;justify-content:center;flex-wrap:wrap;}
+.gallery img{width:220px;height:260px;object-fit:contain;background:#111;border-radius:12px;cursor:pointer;transition:transform .2s;}
+.gallery img:hover{transform:scale(1.05);}
 
 /* MODAL */
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.95);
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-  touch-action: pan-y;
-}
-
-.modal img{
-  max-width:90%;
-  max-height:90%;
-  border-radius:12px;
-}
-
-.modal .close{
-  position:absolute;
-  top:20px;
-  right:30px;
-  color:#fff;
-  font-size:35px;
-  font-weight:bold;
-  cursor:pointer;
-}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;z-index:999;touch-action: pan-y;}
+.modal img{max-width:90%;max-height:90%;border-radius:12px;}
+.modal .close{position:absolute;top:20px;right:30px;color:#fff;font-size:35px;font-weight:bold;cursor:pointer;}
 
 /* WHATSAPP */
-.whatsapp{
-  display:inline-block;
-  margin-top:25px;
-  background:#d6c29b; /* beige button */
-  color:#111;
-  padding:16px 34px;
-  border-radius:50px;
-  text-decoration:none;
-  font-weight:600;
-  transition: 0.2s;
-}
-
-.whatsapp:hover{
-  background:#f5d97c;
-}
+.whatsapp{display:inline-block;margin-top:25px;background:#d6c29b;color:#111;padding:16px 34px;border-radius:50px;text-decoration:none;font-weight:600;transition:0.2s;}
+.whatsapp:hover{background:#f5d97c;}
 
 /* REVIEWS */
-.reviews{
-  margin-top:50px;
-}
-
-.review{
-  background:rgba(0,0,0,0.6);
-  padding:15px 20px;
-  border-radius:10px;
-  margin-bottom:15px;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-}
-
-.review .name{
-  font-weight:bold;
-  color:#f5d97c;
-  margin-bottom:5px;
-}
-
-.review .rating{
-  font-weight:bold;
-  color:#f5d97c;
-  margin-bottom:5px;
-}
+.reviews{margin-top:50px;}
+.review{background:rgba(0,0,0,0.6);padding:15px 20px;border-radius:10px;margin-bottom:20px;display:flex;flex-direction:column;align-items:flex-start;}
+.review .name{font-weight:bold;color:#f5d97c;margin-bottom:5px;}
+.review .rating{font-weight:bold;color:#f5d97c;margin-bottom:10px;}
+.review .text{margin-bottom:10px;}
+.review .photos{display:flex;flex-wrap:wrap;gap:10px;}
+.review .photos img{width:100px;height:100px;object-fit:cover;border-radius:8px;cursor:pointer;transition: transform .2s;}
+.review .photos img:hover{transform:scale(1.1);}
 
 /* REVIEW FORM */
-.review-form{
-  background:rgba(0,0,0,0.6);
-  padding:20px;
-  border-radius:12px;
-  margin-top:30px;
-  text-align:left;
-}
+.review-form{background:rgba(0,0,0,0.6);padding:20px;border-radius:12px;margin-top:30px;text-align:left;}
+.review-form input,.review-form textarea{width:100%;padding:12px;margin-bottom:15px;border-radius:8px;border:none;font-size:14px;}
+.review-form label{font-weight:bold;margin-bottom:5px;display:block;}
+.review-form button{background:#f5d97c;color:#111;border:none;padding:12px 25px;border-radius:50px;font-weight:600;cursor:pointer;}
 
-.review-form input, .review-form textarea{
-  width:100%;
-  padding:12px;
-  margin-bottom:15px;
-  border-radius:8px;
-  border:none;
-  font-size:14px;
-}
-
-.review-form label{
-  font-weight:bold;
-  margin-bottom:5px;
-  display:block;
-}
-
-.review-form button{
-  background:#f5d97c;
-  color:#111;
-  border:none;
-  padding:12px 25px;
-  border-radius:50px;
-  font-weight:600;
-  cursor:pointer;
-}
-
-/* ABOUT / LEARN MORE */
-.about{
-  background:linear-gradient(to right, #1c1c1c, #3c2b0f, #111);
-  padding:60px 20px;
-  text-align:center;
-}
-
-.about h2{
-  font-size:30px;
-  margin-bottom:20px;
-  color:#f5d97c;
-}
-
-.about p{
-  max-width:800px;
-  margin:auto;
-  color:#e0d7b1;
-  font-size:16px;
-  line-height:1.7;
-}
+/* ABOUT */
+.about{background:linear-gradient(to right,#1c1c1c,#3c2b0f,#111);padding:60px 20px;text-align:center;}
+.about h2{font-size:30px;margin-bottom:20px;color:#f5d97c;}
+.about p{max-width:800px;margin:auto;color:#e0d7b1;font-size:16px;line-height:1.7;}
 
 /* FOOTER */
-footer{
-  background:#000;
-  padding:25px;
-  text-align:center;
-  font-size:14px;
-  color:#777;
-}
+footer{background:#000;padding:25px;text-align:center;font-size:14px;color:#777;}
 
 @media(max-width:600px){
   .hero img.logo{width:300px;}
@@ -274,10 +144,9 @@ footer{
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <img src="logo2.png" class="logo" alt="LUXORIN Logo">
-  <h1>LUXORIN Luxury Watches</h1>
+  <img src="logo2.png" class="logo" alt="Luxorin Logo">
+  <h1>Luxorin Luxury Watches</h1>
   <p>Turn heads everywhere you go – Pablo Raez, crafted for style and precision.</p>
-
   <div class="buttons">
     <a href="#learn-more" class="secondary">Learn More</a>
   </div>
@@ -295,40 +164,22 @@ footer{
     <img src="opp.png" alt="Other view" class="product-img">
   </div>
 
-  <a href="https://wa.me/27816065273" class="whatsapp">Order on WhatsApp</a>
+  <a href="https://wa.me/27632802346" class="whatsapp">Order on WhatsApp</a>
 
-  <div class="reviews">
-    <div class="review">
-      <div class="name">Amanda S.</div>
-      <div class="rating">4.6 ★</div>
-      <p>Loved the watch! Perfect fit for my style.</p>
-    </div>
-    <div class="review">
-      <div class="name">Jonathan K.</div>
-      <div class="rating">4.9 ★</div>
-      <p>High quality and luxury feel. Worth every rand.</p>
-    </div>
-    <div class="review">
-      <div class="name">Tina L.</div>
-      <div class="rating">4.8 ★</div>
-      <p>Stylish and water-resistant, exactly what I wanted.</p>
-    </div>
+  <div id="reviews" class="reviews">
+    <!-- Reviews from Firebase appear here dynamically -->
   </div>
 
   <div class="review-form">
     <h3>Add Your Review</h3>
     <label for="name">Name</label>
     <input type="text" id="name" placeholder="Your name">
-
     <label for="rating">Rating (1-5)</label>
     <input type="number" id="rating" placeholder="4.5" min="1" max="5">
-
     <label for="review">Review</label>
     <textarea id="review" placeholder="Write your review here..."></textarea>
-
     <label for="photo">Upload Photo</label>
     <input type="file" id="photo">
-
     <button onclick="submitReview()">Submit Review</button>
   </div>
 </section>
@@ -341,26 +192,20 @@ footer{
 
 <!-- LEARN MORE -->
 <section id="learn-more" class="about">
-  <h2>Discover the World of LUXORIN</h2>
+  <h2>Discover the World of Luxorin</h2>
   <p>
-    At LUXORIN, we believe that a watch is more than just a timepiece—it's a statement. 
+    At Luxorin, we believe that a watch is more than just a timepiece—it's a statement. 
     Each Pablo Raez watch is meticulously designed with <strong>premium stainless steel</strong>, 
-    ensuring durability and a water-resistant build so you can wear it with confidence anywhere.  
+    ensuring durability and a water-resistant build so you can wear it confidently anywhere.  
   </p>
   <p>
-    From the moment you put it on, you feel the elegance, the weight of quality, 
+    From the moment you put it on, you feel elegance, the weight of quality, 
     and the subtle shine that catches the eye. This is a watch crafted for 
     people who value style, precision, and timeless luxury—without paying a fortune.
   </p>
   <p>
-    Our story started with a simple mission: to bring high-end watches to everyone who 
-    desires sophistication and quality. Every curve, every finish, every golden accent is intentional, 
-    so you don’t just wear a watch—you wear <strong>confidence and class</strong>.
-  </p>
-  <p>
-    Looking ahead, LUXORIN is committed to creating a world where luxury is accessible. 
-    Our future collections will continue to blend innovation, timeless style, and uncompromising 
-    quality. Join us in this journey, and let your watch do the talking.
+    Our mission is to bring high-end watches to everyone who desires sophistication and quality. 
+    Every curve, finish, and golden accent is intentional—so you don’t just wear a watch—you wear <strong>confidence and class</strong>.
   </p>
   <div style="margin-top:30px;">
     <a href="https://wa.me/27632802346" class="whatsapp">Order Yours Now</a>
@@ -369,7 +214,7 @@ footer{
 </section>
 
 <footer>
-  &copy; 2026 LUXORIN. All Rights Reserved.
+  &copy; 2026 Luxorin. All Rights Reserved.
 </footer>
 
 <script>
@@ -392,40 +237,17 @@ images.forEach((img,index)=>{
 close.addEventListener('click',()=>{ modal.style.display='none'; });
 
 // Mobile swipe
-let startX = 0;
+let startX=0;
 modalImg.addEventListener('touchstart',(e)=>{ startX=e.touches[0].clientX; });
 modalImg.addEventListener('touchend',(e)=>{
   const endX=e.changedTouches[0].clientX;
   const diff=startX-endX;
-  if(diff>50){ currentIndex=(currentIndex===images.length-1)?0:currentIndex+1; modalImg.src=images[currentIndex].src;}
-  else if(diff<-50){ currentIndex=(currentIndex===0)?images.length-1:currentIndex-1; modalImg.src=images[currentIndex].src;}
+  if(diff>50){ currentIndex=(currentIndex===images.length-1)?0:currentIndex+1; modalImg.src=images[currentIndex].src; }
+  else if(diff<-50){ currentIndex=(currentIndex===0)?images.length-1:currentIndex-1; modalImg.src=images[currentIndex].src; }
 });
 
 modal.addEventListener('click',(e)=>{ if(e.target===modal) modal.style.display='none'; });
-
-// Review submission (front-end only)
-function submitReview(){
-  const name=document.getElementById('name').value;
-  const rating=document.getElementById('rating').value;
-  const reviewText=document.getElementById('review').value;
-  if(name && rating && reviewText){
-    const reviewsDiv=document.querySelector('.reviews');
-    const newReview=document.createElement('div');
-    newReview.classList.add('review');
-    newReview.innerHTML=`
-      <div class="name">${name}</div>
-      <div class="rating">${parseFloat(rating)} ★</div>
-      <p>${reviewText}</p>
-    `;
-    reviewsDiv.appendChild(newReview);
-    alert('Thank you! Your review has been added.');
-    document.getElementById('name').value='';
-    document.getElementById('rating').value='';
-    document.getElementById('review').value='';
-    document.getElementById('photo').value='';
-  } else { alert('Please fill all fields before submitting.'); }
-}
 </script>
 
 </body>
-                                                            </html>
+    </html>
