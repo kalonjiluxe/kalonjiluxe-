@@ -26,64 +26,68 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const storage = getStorage(app);
 
+// Save review
 window.saveReview = async function(){
-  const name=document.getElementById('name').value.trim();
-  const rating=document.getElementById('rating').value.trim();
-  const text=document.getElementById('review').value.trim();
-  const file=document.getElementById('photo').files[0];
-  const btn=document.querySelector('.review-form button');
+  const name = document.getElementById('name').value.trim();
+  const rating = document.getElementById('rating').value.trim();
+  const text = document.getElementById('review').value.trim();
+  const file = document.getElementById('photo').files[0];
+  const btn = document.querySelector('.review-form button');
 
   if(!name || !rating || !text){
     alert('Please fill all fields.');
     return;
   }
 
-  btn.disabled=true;
-  btn.innerText='Submitting...';
+  btn.disabled = true;
+  btn.innerText = 'Submitting...';
 
-  try{
-    let photoURL='';
+  try {
+    let photoURL = '';
     if(file){
-      const storageRef=sRef(storage,'review_photos/'+Date.now()+'_'+file.name);
+      const storageRef = sRef(storage,'review_photos/'+Date.now()+'_'+file.name);
       await new Promise((resolve,reject)=>{
-        const uploadTask=uploadBytesResumable(storageRef,file);
-        uploadTask.on('state_changed',null,
-          error=>reject(error),
-          ()=>{getDownloadURL(uploadTask.snapshot.ref).then(url=>{photoURL=url; resolve();});}
+        const uploadTask = uploadBytesResumable(storageRef,file);
+        uploadTask.on('state_changed', null,
+          error => reject(error),
+          () => getDownloadURL(uploadTask.snapshot.ref).then(url=>{photoURL=url; resolve();})
         );
       });
     }
 
-    const newRef=push(ref(database,'reviews'));
+    const newRef = push(ref(database,'reviews'));
     await set(newRef,{name,rating,text,photo:photoURL});
     loadReviews();
+
     document.getElementById('name').value='';
     document.getElementById('rating').value='';
     document.getElementById('review').value='';
     document.getElementById('photo').value='';
     alert('Thank you! Your review has been added.');
-  }catch(err){
+  } catch(err){
     alert('Error submitting review: '+err.message);
-  }finally{
+  } finally {
     btn.disabled=false;
     btn.innerText='Submit Review';
   }
 };
 
+// Load reviews for everyone
 window.loadReviews = function(){
   const reviewsDiv = document.querySelector('.reviews');
-  reviewsDiv.innerHTML='';
+  reviewsDiv.innerHTML = '';
   const reviewsRef = ref(database,'reviews');
   onValue(reviewsRef,(snapshot)=>{
-    snapshot.forEach((child)=>{
+    reviewsDiv.innerHTML = '';
+    snapshot.forEach(child=>{
       const data = child.val();
       const div = document.createElement('div');
       div.classList.add('review');
-      div.innerHTML=`
+      div.innerHTML = `
         <div class="name">${data.name}</div>
         <div class="rating">${data.rating} ★</div>
         <p>${data.text}</p>
-        ${data.photo ? `<img src="${data.photo}" style="max-width:100px;border-radius:8px;margin-top:5px;">` : ''}
+        ${data.photo ? `<img src="${data.photo}" style="max-width:120px;border-radius:8px;margin-top:5px;">` : ''}
       `;
       reviewsDiv.appendChild(div);
     });
@@ -100,7 +104,6 @@ body{margin:0;font-family:'Poppins',Arial,sans-serif;background:linear-gradient(
 .hero p{max-width:720px;margin:auto;font-size:18px;color:#e0d7b1;font-weight:500;}
 .buttons{margin-top:20px;}
 .buttons a{text-decoration:none;padding:16px 36px;border-radius:8px;margin:6px;display:inline-block;font-weight:600;}
-.primary{background:linear-gradient(135deg,#caa74a,#f5d97c);color:#111;}
 .secondary{background:#fff;color:#111;border:1px solid #ddd;}
 .section{padding:60px 20px;max-width:1100px;margin:auto;}
 .product{text-align:center;}
@@ -122,8 +125,6 @@ body{margin:0;font-family:'Poppins',Arial,sans-serif;background:linear-gradient(
 .about{background:linear-gradient(to right,#1c1c1c,#3c2b0f,#111);padding:60px 20px;text-align:center;}
 .about h2{font-size:30px;margin-bottom:20px;color:#f5d97c;}
 .about p{max-width:800px;margin:auto;color:#e0d7b1;font-size:16px;line-height:1.7;}
-.back-top{display:inline-block;margin-top:15px;background:#f5d97c;color:#111;padding:8px 15px;border-radius:50px;text-decoration:none;font-weight:600;}
-.back-top:hover{background:#d6c29b;}
 footer{background:#000;padding:25px;text-align:center;font-size:14px;color:#777;}
 @media(max-width:600px){.hero img.logo{width:300px;}.hero h1{font-size:22px;}.gallery img{width:160px;height:200px;}}
 </style>
@@ -149,14 +150,20 @@ footer{background:#000;padding:25px;text-align:center;font-size:14px;color:#777;
     <img src="back.png" class="product-img">
     <img src="opp.png" class="product-img">
   </div>
-  <a href="https://wa.me/27632802346" class="whatsapp">Order on WhatsApp</a>
+  <a href="https://wa.me/27816065263" class="whatsapp">Order on WhatsApp</a>
+
   <div class="reviews"></div>
+
   <div class="review-form">
     <h3>Add Your Review</h3>
-    <label>Name</label><input type="text" id="name" placeholder="Your name">
-    <label>Rating (1-5)</label><input type="number" id="rating" min="1" max="5" placeholder="4.5">
-    <label>Review</label><textarea id="review" placeholder="Write your review here..."></textarea>
-    <label>Upload Photo</label><input type="file" id="photo">
+    <label>Name</label>
+    <input type="text" id="name" placeholder="Your name">
+    <label>Rating (1-5)</label>
+    <input type="number" id="rating" min="1" max="5" placeholder="4.5">
+    <label>Review</label>
+    <textarea id="review" placeholder="Write your review here..."></textarea>
+    <label>Upload Photo</label>
+    <input type="file" id="photo">
     <button onclick="saveReview()">Submit Review</button>
   </div>
 </section>
@@ -167,8 +174,7 @@ footer{background:#000;padding:25px;text-align:center;font-size:14px;color:#777;
   <p>Our mission is to make luxury accessible while delivering unmatched elegance, style, and confidence. Every detail is designed to impress, ensuring you wear not just a watch, but a statement.</p>
   <p>Future collections will continue to innovate, blending timeless style with quality, making Luxorin a brand people trust and desire.</p>
   <div style="margin-top:30px;">
-    <a href="https://wa.me/27632802346" class="whatsapp">Order Yours Now</a>
-    <a href="#hero" class="back-top">Back to Top</a>
+    <a href="https://wa.me/27816065263" class="whatsapp">Order Yours Now</a>
   </div>
 </section>
 
@@ -176,15 +182,5 @@ footer{background:#000;padding:25px;text-align:center;font-size:14px;color:#777;
   &copy; 2026 Luxorin. All Rights Reserved.
 </footer>
 
-<script>
-// Smooth scroll for Back to Top
-document.querySelectorAll('.back-top').forEach(link=>{
-  link.addEventListener('click', e=>{
-    e.preventDefault();
-    document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:'smooth'});
-  });
-});
-</script>
-
 </body>
-    </html>
+  </html>
