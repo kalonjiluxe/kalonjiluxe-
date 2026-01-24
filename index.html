@@ -4,146 +4,132 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Luxorin | Luxury Watches</title>
-<meta name="description" content="Luxorin offers premium luxury watches with style, durability, and elegance.">
+<meta name="description" content="Luxorin offers luxury stainless steel watches that are affordable, water-resistant and built to last.">
 
-<!-- Firebase -->
+<!-- Firebase SDKs -->
 <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+  // Import Firebase SDK
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.2/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.6.2/firebase-firestore.js";
+  import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.6.2/firebase-storage.js";
 
+  // Firebase config
   const firebaseConfig = {
     apiKey: "AIzaSyCglSrG-DoIaA-mJOG3ek6Uo9-DGkvR3TE",
     authDomain: "luxorin-reviews.firebaseapp.com",
     projectId: "luxorin-reviews",
-    storageBucket: "luxorin-reviews.firebasestorage.app",
+    storageBucket: "luxorin-reviews.appspot.com",
     messagingSenderId: "435983248839",
     appId: "1:435983248839:web:0b9928de0ed348232fbde2"
   };
 
+  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
+  const storage = getStorage(app);
 
-  window.submitReview = async function(){
-    const name = document.getElementById('name').value;
-    const rating = document.getElementById('rating').value;
-    const text = document.getElementById('review').value;
-    if(!name || !rating || !text){ alert('Please fill all fields'); return; }
+  // Load reviews live
+  const reviewsDiv = document.getElementById("reviews-container");
+  const reviewsCollection = collection(db, "reviews");
+  const reviewsQuery = query(reviewsCollection, orderBy("timestamp", "desc"));
 
-    // Optional: photo handling could be added here
-    try {
-      await addDoc(collection(db,"reviews"),{
-        name, rating: parseFloat(rating), text, created: serverTimestamp()
-      });
-      alert('Thank you! Your review has been submitted.');
-      document.getElementById('name').value='';
-      document.getElementById('rating').value='';
-      document.getElementById('review').value='';
-      document.getElementById('photo').value='';
-    } catch(e){ console.error(e); alert('Error submitting review.'); }
-  };
-
-  window.addEventListener('DOMContentLoaded',()=>{
-    const reviewsDiv = document.getElementById('reviews');
-    const q = query(collection(db,"reviews"), orderBy("created","desc"));
-    onSnapshot(q, snapshot=>{
-      reviewsDiv.innerHTML='';
-      snapshot.forEach(doc=>{
-        const r = doc.data();
-        let photosHTML = "";
-        if(r.photoURL){
-          photosHTML = `<div class="photos"><img src="${r.photoURL}" onclick="window.open('${r.photoURL}','_blank')"></div>`;
-        }
-        reviewsDiv.innerHTML += `<div class="review">
-          <div class="name">${r.name}</div>
-          <div class="rating">${r.rating} ★</div>
-          <div class="text">${r.text}</div>
-          ${photosHTML}
-        </div>`;
-      });
+  onSnapshot(reviewsQuery, (snapshot) => {
+    reviewsDiv.innerHTML = ""; // Clear existing
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      const reviewDiv = document.createElement("div");
+      reviewDiv.classList.add("review");
+      reviewDiv.innerHTML = `
+        <div class="name">${data.name}</div>
+        <div class="rating">${data.rating} ★</div>
+        <p>${data.text}</p>
+        ${data.imageURL ? `<img src="${data.imageURL}" style="max-width:200px; border-radius:8px; margin-top:5px;">` : ""}
+      `;
+      reviewsDiv.appendChild(reviewDiv);
     });
   });
+
+  // Handle review submission
+  window.submitReview = async function() {
+    const name = document.getElementById("name").value;
+    const rating = document.getElementById("rating").value;
+    const text = document.getElementById("review").value;
+    const file = document.getElementById("photo").files[0];
+
+    if (!name || !rating || !text) { alert("Please fill all fields."); return; }
+
+    let imageURL = "";
+    if (file) {
+      const storageRef = ref(storage, `review-images/${Date.now()}_${file.name}`);
+      await uploadBytes(storageRef, file);
+      imageURL = await getDownloadURL(storageRef);
+    }
+
+    await addDoc(reviewsCollection, {
+      name,
+      rating: parseFloat(rating),
+      text,
+      imageURL,
+      timestamp: new Date()
+    });
+
+    document.getElementById("name").value="";
+    document.getElementById("rating").value="";
+    document.getElementById("review").value="";
+    document.getElementById("photo").value="";
+    alert("Review submitted successfully!");
+  }
 </script>
 
 <style>
 body{
   margin:0;
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family:'Poppins',Arial,sans-serif;
   background: linear-gradient(135deg,#1b1b1b,#3a2b0f,#0b0b0b,#2c1e0c);
   background-size:400% 400%;
   animation:gradientMove 15s ease infinite;
   color:#fff;
 }
-
-@keyframes gradientMove{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
-}
+@keyframes gradientMove {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
 
 .hero{text-align:center;padding:70px 20px 40px;}
-.hero img.logo{width:450px;height:auto;margin-bottom:25px;}
-.hero h1{font-size:28px;color:#f5d97c;margin-bottom:10px;}
-.hero p{max-width:720px;margin:auto;font-size:18px;color:#e0d7b1;font-weight:500;}
+.hero img.logo{width:420px;margin-bottom:25px;}
+.hero h1{font-size:26px;color:#f5d97c;margin-bottom:10px;}
+.hero p{max-width:720px;margin:auto;font-size:18px;color:#e0d7b1;}
 .buttons{margin-top:20px;}
-.hero a{text-decoration:none;padding:16px 36px;border-radius:8px;margin:6px;display:inline-block;font-weight:600;}
-.primary{background:linear-gradient(135deg,#caa74a,#f5d97c);color:#111;}
-.secondary{background:#fff;color:#111;border:1px solid #ddd;}
-
-.section{padding:60px 20px;max-width:1100px;margin:auto;}
-.product{text-align:center;}
-.product h2{font-size:38px;margin-bottom:15px;color:#f5d97c;}
-.price{margin:15px 0 20px;font-size:30px;}
-.old-price{text-decoration:line-through;color:#ccc;font-size:18px;margin-left:10px;}
+.secondary{background:#fff;color:#111;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:600;}
+.section{padding:60px 20px;max-width:1100px;margin:auto;text-align:center;}
+.product h2{font-size:38px;color:#f5d97c;}
+.price{font-size:30px;margin:15px 0;}
+.old-price{text-decoration:line-through;font-size:18px;color:#ccc;margin-left:10px;}
 .gallery{display:flex;gap:15px;justify-content:center;flex-wrap:wrap;}
 .gallery img{width:220px;height:260px;object-fit:contain;background:#111;border-radius:12px;cursor:pointer;transition:transform .2s;}
 .gallery img:hover{transform:scale(1.05);}
-
-/* MODAL */
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;z-index:999;touch-action: pan-y;}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);justify-content:center;align-items:center;z-index:999;}
 .modal img{max-width:90%;max-height:90%;border-radius:12px;}
 .modal .close{position:absolute;top:20px;right:30px;color:#fff;font-size:35px;font-weight:bold;cursor:pointer;}
-
-/* WHATSAPP */
-.whatsapp{display:inline-block;margin-top:25px;background:#d6c29b;color:#111;padding:16px 34px;border-radius:50px;text-decoration:none;font-weight:600;transition:0.2s;}
+.whatsapp{display:inline-block;margin-top:25px;background:#d6c29b;color:#111;padding:16px 34px;border-radius:50px;text-decoration:none;font-weight:600;transition:.2s;}
 .whatsapp:hover{background:#f5d97c;}
-
-/* REVIEWS */
-.reviews{margin-top:50px;}
-.review{background:rgba(0,0,0,0.6);padding:15px 20px;border-radius:10px;margin-bottom:20px;display:flex;flex-direction:column;align-items:flex-start;}
+.reviews{margin-top:50px;text-align:left;}
+.review{background:rgba(0,0,0,0.6);padding:15px 20px;border-radius:10px;margin-bottom:15px;display:flex;flex-direction:column;align-items:flex-start;}
 .review .name{font-weight:bold;color:#f5d97c;margin-bottom:5px;}
-.review .rating{font-weight:bold;color:#f5d97c;margin-bottom:10px;}
-.review .text{margin-bottom:10px;}
-.review .photos{display:flex;flex-wrap:wrap;gap:10px;}
-.review .photos img{width:100px;height:100px;object-fit:cover;border-radius:8px;cursor:pointer;transition: transform .2s;}
-.review .photos img:hover{transform:scale(1.1);}
-
-/* REVIEW FORM */
+.review .rating{font-weight:bold;color:#f5d97c;margin-bottom:5px;}
 .review-form{background:rgba(0,0,0,0.6);padding:20px;border-radius:12px;margin-top:30px;text-align:left;}
-.review-form input,.review-form textarea{width:100%;padding:12px;margin-bottom:15px;border-radius:8px;border:none;font-size:14px;}
+.review-form input, .review-form textarea{width:100%;padding:12px;margin-bottom:15px;border-radius:8px;border:none;font-size:14px;}
 .review-form label{font-weight:bold;margin-bottom:5px;display:block;}
 .review-form button{background:#f5d97c;color:#111;border:none;padding:12px 25px;border-radius:50px;font-weight:600;cursor:pointer;}
-
-/* ABOUT */
 .about{background:linear-gradient(to right,#1c1c1c,#3c2b0f,#111);padding:60px 20px;text-align:center;}
-.about h2{font-size:30px;margin-bottom:20px;color:#f5d97c;}
-.about p{max-width:800px;margin:auto;color:#e0d7b1;font-size:16px;line-height:1.7;}
-
-/* FOOTER */
-footer{background:#000;padding:25px;text-align:center;font-size:14px;color:#777;}
-
-@media(max-width:600px){
-  .hero img.logo{width:300px;}
-  .hero h1{font-size:22px;}
-  .gallery img{width:160px;height:200px;}
-}
+.about h2{color:#f5d97c;font-size:30px;}
+.about p{max-width:800px;margin:15px auto;line-height:1.7;color:#e0d7b1;font-size:16px;}
+footer{background:#000;padding:25px;text-align:center;color:#777;}
+@media(max-width:600px){.hero img.logo{width:300px;}.gallery img{width:160px;height:200px;}}
 </style>
 </head>
 
 <body>
 
 <!-- HERO -->
-<section class="hero" id="hero">
+<section class="hero">
   <img src="logo2.png" class="logo" alt="Luxorin Logo">
   <h1>Luxorin Luxury Watches</h1>
   <p>Turn heads everywhere you go – Pablo Raez, crafted for style and precision.</p>
@@ -156,18 +142,16 @@ footer{background:#000;padding:25px;text-align:center;font-size:14px;color:#777;
 <section class="section product">
   <h2>Pablo Raez Watch</h2>
   <div class="price">R 825 <span class="old-price">R 1,200</span></div>
-  
   <div class="gallery">
     <img src="watch.png" alt="Front view" class="product-img">
     <img src="side.png" alt="Side view" class="product-img">
     <img src="back.png" alt="Back view" class="product-img">
     <img src="opp.png" alt="Other view" class="product-img">
   </div>
-
   <a href="https://wa.me/27632802346" class="whatsapp">Order on WhatsApp</a>
 
-  <div id="reviews" class="reviews">
-    <!-- Reviews from Firebase appear here dynamically -->
+  <div class="reviews" id="reviews-container">
+    <!-- Reviews will load here live -->
   </div>
 
   <div class="review-form">
@@ -193,20 +177,9 @@ footer{background:#000;padding:25px;text-align:center;font-size:14px;color:#777;
 <!-- LEARN MORE -->
 <section id="learn-more" class="about">
   <h2>Discover the World of Luxorin</h2>
-  <p>
-    At Luxorin, we believe that a watch is more than just a timepiece—it's a statement. 
-    Each Pablo Raez watch is meticulously designed with <strong>premium stainless steel</strong>, 
-    ensuring durability and a water-resistant build so you can wear it confidently anywhere.  
-  </p>
-  <p>
-    From the moment you put it on, you feel elegance, the weight of quality, 
-    and the subtle shine that catches the eye. This is a watch crafted for 
-    people who value style, precision, and timeless luxury—without paying a fortune.
-  </p>
-  <p>
-    Our mission is to bring high-end watches to everyone who desires sophistication and quality. 
-    Every curve, finish, and golden accent is intentional—so you don’t just wear a watch—you wear <strong>confidence and class</strong>.
-  </p>
+  <p>At Luxorin, a watch is more than a timepiece — it's a statement. Each Pablo Raez watch is designed with premium stainless steel, durability, and water resistance so you can wear it with confidence.</p>
+  <p>From elegance to subtle shine, every curve and golden accent is intentional. This is luxury, sophistication, and quality in one.</p>
+  <p>Our mission: make luxury accessible, timeless, and powerful. Join us and let your watch speak volumes.</p>
   <div style="margin-top:30px;">
     <a href="https://wa.me/27632802346" class="whatsapp">Order Yours Now</a>
     <a href="#hero" class="secondary" style="margin-left:15px;">Back to Top</a>
@@ -223,7 +196,6 @@ const modal = document.getElementById('modal');
 const modalImg = document.getElementById('modal-img');
 const close = document.getElementById('close');
 const images = document.querySelectorAll('.product-img');
-
 let currentIndex = 0;
 
 images.forEach((img,index)=>{
@@ -233,21 +205,19 @@ images.forEach((img,index)=>{
     modal.style.display='flex';
   });
 });
-
 close.addEventListener('click',()=>{ modal.style.display='none'; });
+modal.addEventListener('click',(e)=>{ if(e.target===modal) modal.style.display='none'; });
 
-// Mobile swipe
-let startX=0;
+// Swipe for mobile
+let startX = 0;
 modalImg.addEventListener('touchstart',(e)=>{ startX=e.touches[0].clientX; });
 modalImg.addEventListener('touchend',(e)=>{
   const endX=e.changedTouches[0].clientX;
   const diff=startX-endX;
-  if(diff>50){ currentIndex=(currentIndex===images.length-1)?0:currentIndex+1; modalImg.src=images[currentIndex].src; }
-  else if(diff<-50){ currentIndex=(currentIndex===0)?images.length-1:currentIndex-1; modalImg.src=images[currentIndex].src; }
+  if(diff>50){ currentIndex=(currentIndex===images.length-1)?0:currentIndex+1; modalImg.src=images[currentIndex].src;}
+  else if(diff<-50){ currentIndex=(currentIndex===0)?images.length-1:currentIndex-1; modalImg.src=images[currentIndex].src;}
 });
-
-modal.addEventListener('click',(e)=>{ if(e.target===modal) modal.style.display='none'; });
 </script>
 
 </body>
-    </html>
+                             </html>
