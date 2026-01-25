@@ -26,9 +26,23 @@ body{
 .price{font-size:30px;margin:15px 0}
 .old{color:#bbb;text-decoration:line-through;font-size:18px;margin-left:10px}
 
-.gallery{display:flex;gap:15px;justify-content:center;flex-wrap:wrap}
-.gallery img{width:220px;height:260px;object-fit:contain;background:#111;border-radius:12px}
+/* Watch Gallery */
+.gallery{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+.gallery img{
+  width:220px;
+  height:260px;
+  object-fit:contain;
+  background:#111;
+  border-radius:12px;
+  cursor:pointer;
+}
 
+/* WhatsApp Button */
 .whatsapp{
   display:inline-block;
   margin-top:25px;
@@ -40,6 +54,7 @@ body{
   font-weight:600;
 }
 
+/* Reviews */
 .reviews{margin-top:50px;text-align:left}
 .review{
   background:rgba(0,0,0,.6);
@@ -49,6 +64,7 @@ body{
 }
 .review img{max-width:120px;border-radius:8px;margin-top:10px}
 
+/* Review Form */
 .review-form{
   background:rgba(0,0,0,.6);
   padding:20px;
@@ -73,6 +89,7 @@ body{
   cursor:pointer
 }
 
+/* About */
 .about{
   background:linear-gradient(to right,#1c1c1c,#3c2b0f,#111);
   padding:60px 20px;
@@ -97,10 +114,10 @@ footer{background:#000;padding:25px;text-align:center;color:#777}
   <div class="price">R 825 <span class="old">R 1,200</span></div>
 
   <div class="gallery">
-    <img src="watch.png">
-    <img src="side.png">
-    <img src="back.png">
-    <img src="opp.png">
+    <img src="watch.png" alt="Front View">
+    <img src="side.png" alt="Side View">
+    <img src="back.png" alt="Back View">
+    <img src="opp.png" alt="Opposite View">
   </div>
 
   <a class="whatsapp" href="https://wa.me/27816065263">Order on WhatsApp</a>
@@ -113,7 +130,7 @@ footer{background:#000;padding:25px;text-align:center;color:#777}
     <input id="rating" type="number" min="1" max="5" placeholder="Rating (1–5)">
     <textarea id="text" placeholder="Your review"></textarea>
     <input id="photo" type="file" accept="image/*">
-    <button onclick="submitReview()">Submit Review</button>
+    <button onclick="submitReview(this)">Submit Review</button>
   </div>
 </section>
 
@@ -151,30 +168,53 @@ const app = initializeApp({
 const db = getDatabase(app);
 const storage = getStorage(app);
 
-window.submitReview = async () => {
-  const name = nameInput.value.trim();
-  const rating = ratingInput.value.trim();
-  const text = textInput.value.trim();
-  const file = photo.files[0];
-
-  if(!name || !rating || !text){ alert("Fill all fields"); return; }
-
-  let photoURL = "";
-  if(file){
-    const imgRef = sRef(storage,"reviews/"+Date.now()+file.name);
-    await uploadBytes(imgRef,file);
-    photoURL = await getDownloadURL(imgRef);
-  }
-
-  await push(ref(db,"reviews"),{name,rating,text,photoURL});
-  nameInput.value=ratingInput.value=textInput.value=photo.value="";
-};
-
 const nameInput = document.getElementById("name");
 const ratingInput = document.getElementById("rating");
 const textInput = document.getElementById("text");
+const photoInput = document.getElementById("photo");
 const reviewsDiv = document.getElementById("reviews");
 
+window.submitReview = async (btn) => {
+  const name = nameInput.value.trim();
+  const rating = ratingInput.value.trim();
+  const text = textInput.value.trim();
+  const file = photoInput.files[0];
+
+  if(!name || !rating || !text){
+    alert("Please fill all fields");
+    return;
+  }
+
+  btn.innerText = "Submitting...";
+
+  let photoURL = "";
+  if(file){
+    try {
+      const imgRef = sRef(storage,"reviews/"+Date.now()+"_"+file.name);
+      await uploadBytes(imgRef,file);
+      photoURL = await getDownloadURL(imgRef);
+    } catch(err){
+      alert("Image upload failed");
+      btn.innerText = "Submit Review";
+      return;
+    }
+  }
+
+  try{
+    await push(ref(db,"reviews"),{name,rating,text,photoURL});
+  } catch(err){
+    alert("Failed to submit review");
+    btn.innerText = "Submit Review";
+    return;
+  }
+
+  // Clear fields
+  nameInput.value = ratingInput.value = textInput.value = "";
+  photoInput.value = "";
+  btn.innerText = "Submit Review";
+};
+
+// Load reviews live
 onValue(ref(db,"reviews"),snap=>{
   reviewsDiv.innerHTML="";
   snap.forEach(s=>{
@@ -183,11 +223,11 @@ onValue(ref(db,"reviews"),snap=>{
       <div class="review">
         <strong>${r.name}</strong> – ${r.rating} ★
         <p>${r.text}</p>
-        ${r.photoURL?`<img src="${r.photoURL}">`:""}
+        ${r.photoURL?`<img src="${r.photoURL}" alt="Review Image">`:""}
       </div>`;
   });
 });
 </script>
 
 </body>
-</html>
+    </html>
