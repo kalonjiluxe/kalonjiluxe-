@@ -86,7 +86,7 @@ footer{background:#000;padding:25px;text-align:center;font-size:14px;color:#777;
     <img src="opp.png" alt="Other view" class="product-img">
   </div>
 
-  <a href="https://wa.me/27632802346" class="whatsapp">Order on WhatsApp</a>
+  <a href="https://wa.me/27816065273" class="whatsapp">Order on WhatsApp</a>
 
   <div class="reviews"></div>
 
@@ -128,7 +128,7 @@ footer{background:#000;padding:25px;text-align:center;font-size:14px;color:#777;
     that continue to redefine affordable luxury.
   </p>
   <div style="margin-top:30px;">
-    <a href="https://wa.me/27632802346" class="whatsapp">Order Yours Now</a>
+    <a href="https://wa.me/27816065273" class="whatsapp">Order Yours Now</a>
     <a href="#hero" class="back-top">Back to Top</a>
   </div>
 </section>
@@ -165,6 +165,14 @@ modalImg.addEventListener('touchend',(e)=>{
 });
 
 modal.addEventListener('click',(e)=>{ if(e.target===modal) modal.style.display='none'; });
+
+// Smooth scroll for Back to Top
+document.querySelectorAll('.back-top').forEach(el=>{
+  el.addEventListener('click', e=>{
+    e.preventDefault();
+    window.scroll({top:0, behavior:'smooth'});
+  });
+});
 </script>
 
 <script type="module">
@@ -215,7 +223,6 @@ window.saveReview = function() {
         photoInput.value = '';
         btn.disabled = false;
         btn.innerText = 'Submit Review';
-        loadReviews();
         alert('Thank you! Your review has been submitted.');
       })
       .catch(err => {
@@ -245,11 +252,11 @@ window.saveReview = function() {
   }
 };
 
-// Load reviews live
+// Live load reviews
 window.loadReviews = function(){
   const reviewsRef = ref(database, 'reviews');
-  reviewsDiv.innerHTML = '';
   onValue(reviewsRef, snapshot => {
+    reviewsDiv.innerHTML = '';
     snapshot.forEach(child => {
       const data = child.val();
       const div = document.createElement('div');
